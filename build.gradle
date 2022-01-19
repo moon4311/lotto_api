@@ -1,0 +1,63 @@
+buildscript {
+    ext.kotlin_version = '1.2.41'
+    ext {
+        springBootVersion = '2.6.1'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'war'
+war {
+    baseName = 'kr.co.lotto_api'
+}
+
+
+// group = 'com.example'
+group = 'kr.co.lotto_api'
+version = '1.0.0'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+	compile fileTree(dir: 'src/main/webapp/WEB-INF/lib', include: ['*.jar'])
+    compile 'org.apache.poi:poi-ooxml:3.16'
+    compile 'org.apache.poi:poi:3.16'
+    compile 'commons-io:commons-io:2.11.0'
+    compile 'commons-dbcp:commons-dbcp:1.4'
+    compile 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    compile 'javax.servlet:jstl:1.2'
+    compile 'org.springframework.boot:spring-boot-starter-jdbc'
+    compile "org.springframework.boot:spring-boot-starter-security"
+    compile 'org.springframework.boot:spring-boot-devtools'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-aop'
+    compile 'com.google.zxing:core:3.2.1'
+    compile 'com.google.zxing:javase:3.2.1'
+    compile 'com.googlecode.json-simple:json-simple:1.1.1'
+	implementation 'com.google.code.gson:gson:2.8.6'
+	implementation 'org.apache.logging.log4j:log4j-core:2.17.1'
+	implementation 'org.apache.logging.log4j:log4j-api:2.17.1'
+	implementation 'org.apache.logging.log4j:log4j-to-slf4j:2.17.1'
+	compile group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.1.1'
+	compile group: 'org.bouncycastle', name: 'bcprov-ext-jdk15to18', version: '1.64' 
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.19'
+    compile group: 'org.bgee.log4jdbc-log4j2', name: 'log4jdbc-log4j2-jdbc4.1', version: '1.16'
+    compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.9.13'
+    compile group: 'org.codehaus.jackson', name: 'jackson-core-asl', version: '1.9.13'
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+	annotationProcessor 'org.projectlombok:lombok:1.18.22' 
+}

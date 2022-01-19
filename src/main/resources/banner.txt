@@ -1,0 +1,34 @@
+${AnsiColor.GREEN}
+               o88888                     888o                    
+           888${AnsiBackground.BRIGHT_YELLOW}        ${AnsiBackground.DEFAULT}8888           8888${AnsiBackground.BRIGHT_YELLOW}      ${AnsiBackground.DEFAULT}8888:              
+        88${AnsiBackground.BRIGHT_YELLOW}                ${AnsiBackground.DEFAULT}888     888${AnsiBackground.BRIGHT_YELLOW}               ${AnsiBackground.DEFAULT}888           
+      88${AnsiBackground.BRIGHT_YELLOW}                     ${AnsiBackground.DEFAULT}88 88${AnsiBackground.BRIGHT_YELLOW}   ${AnsiBackground.DEFAULT}88888888888${AnsiBackground.BRIGHT_YELLOW}       ${AnsiBackground.DEFAULT}88         
+    88${AnsiBackground.BRIGHT_YELLOW}                        ${AnsiBackground.DEFAULT}88 888${AnsiBackground.BRIGHT_YELLOW}            ${AnsiBackground.DEFAULT}88${AnsiBackground.BRIGHT_YELLOW}      ${AnsiBackground.DEFAULT}88        
+    888${AnsiBackground.BRIGHT_YELLOW}                      ${AnsiBackground.DEFAULT}88 88${AnsiBackground.BRIGHT_YELLOW}                    ${AnsiBackground.DEFAULT}88          
+       88:${AnsiBackground.BRIGHT_YELLOW}                 ${AnsiBackground.DEFAULT}88  88 888${AnsiBackground.BRIGHT_YELLOW}              ${AnsiBackground.DEFAULT}&88            
+          888.${AnsiBackground.BRIGHT_YELLOW}         ${AnsiBackground.DEFAULT}888.    8     888${AnsiBackground.BRIGHT_YELLOW}        ${AnsiBackground.DEFAULT}888&              
+               8888888        88        ${AnsiBackground.DEFAULT}.888888                   
+                              88                                  
+                              8     &&                mm      mm                              ${AnsiColor.BLUE}                                      ${AnsiColor.GREEN}              
+                              8                       MM                                      ${AnsiColor.BLUE}                                      ${AnsiColor.GREEN}  
+                              8   88                MMMMMM    MM   7MMpMMMb.pMMMb.   ,pW"Wq.  ${AnsiColor.BLUE}   MMpdMAo.  ,pbm9^Y  ,pP"Yb  ,pP"Yb  ${AnsiColor.GREEN} 
+                              8  88                   MM      MM    MM    MM    MM  6W'   `Wb ${AnsiColor.BLUE}   MM   `Wb  6W`  MM  8I   `" 8I   `" ${AnsiColor.GREEN} 
+                              88 8                    MM      MM    MM    MM    MM  8M     M8 ${AnsiColor.BLUE}   MM    M8 8M    MM  `YMMMa. `YMMMa. ${AnsiColor.GREEN} 
+                               8 8                    MM      MM    MM    MM    MM  YA.   ,A9 ${AnsiColor.BLUE}   MM   ,AP  YA.  MM  L.   I8 L.   I8 ${AnsiColor.GREEN}  
+                               &888                   `Mbmo .JMML..JMML  JMML  JMML. `Ybmd9'  ${AnsiColor.BLUE}   MMbmmd'   `Ybm^9M  M9mmmP' M9mmmP' ${AnsiColor.GREEN}  
+                                 888                                                          ${AnsiColor.BLUE}   MM                                 ${AnsiColor.GREEN}  
+                                   8888       88                                              ${AnsiColor.BLUE}   MM                                 ${AnsiColor.GREEN}           
+                                        8888         
+                                                        
+${AnsiColor.RED}
+ ___ ___   ____  _      _     ${AnsiColor.BRIGHT_RED}
+|   T   T /    T| T    | T    ${AnsiColor.YELLOW}
+| _   _ |Y  o  || |    | |    ${AnsiColor.BRIGHT_GREEN}
+|  \_/  ||  _  || l___ | l___ ${AnsiColor.GREEN}
+|   |   ||  |  ||     T|     T${AnsiColor.BLUE}
+l___j___jl__j__jl_____jl_____j v1.0.0
+
+                              
+
+${Ansi.NORMAL}
+by   http://patorjk.com/software/taag/#p=display&f=Crawford&t=timopass

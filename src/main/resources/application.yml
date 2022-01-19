@@ -1,0 +1,33 @@
+spring:
+  messages:
+    basename: i18n/exception
+    encoding: UTF-8
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://111.111.111.11:3306/lotto?characterEncoding=UTF-8&serverTimezone=UTC
+    username: 111
+    password: 111
+mybatis:
+  mapper-locations: classpath:kr/co/lotto_api/mapper/*.xml
+  config-location: classpath:mybatis-config.xml
+  
+server:
+  port: 80
+  servlet:
+    context-path: /
+  error:
+    include-exception: true
+    include-stacktrace: always
+    whitelabel:
+      enabled: true
+
+logging:
+  level:
+    org:
+      springframework:
+        web: info
+    root: info
