@@ -30,40 +30,28 @@
 	<insert id="insert" parameterType="map">
 		INSERT INTO <include refid="tblnm"/>
 		(
-			NOTICE_SEQ,
-			SUBJECT,
-			CONTENTS,
-			NOTICE_TYPE_CD,
-			FILE_NO
-			<include refid="mybatis.mapper.Base.insert_select"/>
+			DRW_NO,
+			DT,
+			no1,
+			no2,
+			no3,
+			no4,
+			no5,
+			no6,
+			no7
 		)
 		values
 		(
-			${plinkName}.fn_get_seq_id('NT'),
-			#{subject},
-			#{contents},
-			#{noticeTypeCd},
-			#{fileNo}
-			<include refid="mybatis.mapper.Base.insert"/>
+			#{drwNo},
+			#{dt},
+			#{no1},
+			#{no2},
+			#{no3},
+			#{no4},
+			#{no5},
+			#{no6},
+			#{no7}
 		)
 	</insert>
 	
-	<!-- 수정 -->
-	<update id="update" parameterType="map">
-		UPDATE <include refid="tblnm"/>
-		SET SUBJECT = #{subject},
-			CONTENTS = #{contents},
-			NOTICE_TYPE_CD = #{noticeTypeCd},
-			FILE_NO = #{fileNo}
-			<include refid="mybatis.mapper.Base.update"/>
-		WHERE NOTICE_SEQ= #{noticeSeq}
-	</update>
-	
-	<!-- 삭제 -->
-	<delete id="delete" parameterType="map">
-		DELETE
-		FROM <include refid="tblnm" />
-		WHERE NOTICE_SEQ= #{noticeSeq}
-	</delete>
-
 </mapper>
