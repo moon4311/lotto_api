@@ -2,59 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.lotto_api.mapper.WinNo">
  
- 	<sql id="tblnm">notice_tb</sql>
+ 	<sql id="tblnm">win_no_tb</sql>
  	
  	<!-- 한건 조회 -->
  	<select id="selectOne" parameterType="map" resultType="kr.co.lotto_api.model.WinNoVO">
 		SELECT 
-			NOTICE_SEQ,
-			SUBJECT,
-			CONTENTS,
-			NOTICE_TYPE_CD,
-			GROUP_CONCAT(
-				ATT.FILE_SEQ,
-				',',
-				ATT.LOGICAL_FILE_NAME
-			) AS FILE_LIST,
-			NT.FILE_NO,
-			date_format(NT.REGIST_DATE, '%Y-%m-%d') as REGIST_DATE,
-			NT.REGIST_ID,
-			date_format(NT.UPDATE_DATE, '%Y-%m-%d') as UPDATE_DATE,
-			NT.UPDATE_ID
-		FROM <include refid="tblnm" /> NT
-		LEFT JOIN ${plinkName}.ATTACH_TB ATT
-		ON NT.FILE_NO = ATT.FILE_NO
-		WHERE NOTICE_SEQ= #{noticeSeq}
+			DRW_NO,
+			DT,
+			NO1,NO2,NO3,NO4,NO5,NO6,NO7
+		FROM <include refid="tblnm" /> 
+		WHERE DRW_NO = #{drwNo}
 	</select>
 	
 	
  	<!-- 다건 조회 -->
  	<select id="selectList" parameterType="map" resultType="kr.co.lotto_api.model.WinNoVO">
 		SELECT 
-			NOTICE_SEQ,
-			SUBJECT,
-			CONTENTS,
-			CCT.CODE_NAME AS NOTICE_TYPE_NAME,
-			NOTICE_TYPE_CD,
-			FILE_NO,
-			date_format(NT.REGIST_DATE, '%Y-%m-%d') as REGIST_DATE,
-			NT.REGIST_ID	
-		FROM <include refid="tblnm" /> NT
-		LEFT JOIN ${plinkName}.COMMON_CODE_TB CCT
-		ON NT.NOTICE_TYPE_CD = CCT.COMMON_CD
-		WHERE 1=1
-		<if test="subject != '' and subject != null">
-    	AND		SUBJECT like concat('%',#{subject},'%')
-    	</if>
-		<if test="noticeTypeCd != '' and noticeTypeCd != null">
-    	AND		NOTICE_TYPE_CD like concat('%',#{noticeTypeCd},'%')
-    	</if>
-		<if test="registFromDate != '' and registFromDate != null">
-    	AND		NT.REGIST_DATE >= #{registFromDate}
-    	</if>
-		<if test="registToDate != '' and registToDate != null">
-		<![CDATA[AND NT.REGIST_DATE <= #{registToDate}]]>
-    	</if>
+			DRW_NO,
+			DT,
+			NO1,NO2,NO3,NO4,NO5,NO6,NO7
+		FROM <include refid="tblnm" /> 
+		ORDER BY DRW_NO DESC
 	</select>
  
 	

@@ -7,12 +7,8 @@ import lombok.Setter;
 @Setter
 public class WinNoVO{
 	
-	private String memberNo;
-	private String memberName;
-	private String businessId;
-	private String registDate;
-	private String registId;
-	private String updateDate;
-	private String updateId;
+	private int drwNo; //회차
+	private String dt; //추첨일
+	private int no1,no2,no3,no4,no5,no6,no7;
 	
 }
