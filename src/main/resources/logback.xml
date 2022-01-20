@@ -24,7 +24,7 @@
 			<!-- 일별로 로그파일이 생성된다. -->
 			<!-- LOCAL -->
 			<!-- <fileNamePattern>D:\\logs\\ming-%d{yyyy-MM-dd}.%i.log</fileNamePattern> -->
-			<fileNamePattern>../log/tmkey-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<fileNamePattern>../log/api-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
 			<!-- 5MB가 넘으면 새로운 로그파일이 생성된다. -->
 			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
 				<maxFileSize>5MB</maxFileSize>
