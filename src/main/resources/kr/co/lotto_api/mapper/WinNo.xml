@@ -16,7 +16,7 @@
 	
 	
  	<!-- 다건 조회 -->
- 	<select id="selectList" parameterType="map" resultType="kr.co.lotto_api.model.WinNoVO">
+ 	<select id="selectList" parameterType="map" resultType="WinNoVO">
 		SELECT 
 			DRW_NO,
 			DT,
@@ -25,6 +25,42 @@
 		ORDER BY DRW_NO DESC
 	</select>
  
+	<select id="selectBallCntPerNo" parameterType="map" resultType="BallNoVO">
+		SELECT BALL_NO,
+					 cnt1,
+					 cnt2,
+					 cnt3,
+					 cnt4,
+					 cnt5,
+					 cnt6
+		FROM ball_no_tb
+	</select>
+	
+	<update id="updateBallNo">
+		UPDATE ball_no_tb A 
+			,(SELECT NO1 NO,COUNT(1) CNT FROM win_no_tb GROUP BY NO1 ) B1
+			,(SELECT NO2 NO,COUNT(1) CNT FROM win_no_tb GROUP BY NO2 ) B2
+			,(SELECT NO3 NO,COUNT(1) CNT FROM win_no_tb GROUP BY NO3 ) B3
+			,(SELECT NO4 NO,COUNT(1) CNT FROM win_no_tb GROUP BY NO4 ) B4
+			,(SELECT NO5 NO,COUNT(1) CNT FROM win_no_tb GROUP BY NO5 ) B5
+			,(SELECT NO6 NO,COUNT(1) CNT FROM win_no_tb GROUP BY NO6 ) B6
+		SET 
+			CNT1 = B1.CNT,
+			CNT2 = B2.CNT,
+			CNT3 = B3.CNT,
+			CNT4 = B4.CNT,
+			CNT5 = B5.CNT,
+			CNT6 = B6.CNT
+		WHERE 
+					A.BALL_NO = B1.NO
+			AND	A.BALL_NO = B2.NO
+			AND	A.BALL_NO = B3.NO
+			AND	A.BALL_NO = B4.NO
+			AND	A.BALL_NO = B5.NO
+			AND	A.BALL_NO = B6.NO
+	
+	</update>
+	
 	
 	<!-- 입력 -->
 	<insert id="insert" parameterType="map">

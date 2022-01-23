@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.lotto_api.mapper.WinNo;
+import kr.co.lotto_api.model.BallNoVO;
 import kr.co.lotto_api.model.WinNoVO;
 
 @Transactional
@@ -43,5 +44,8 @@ public class WinNoService extends AbstractService implements ServiceImpl{
 		return winNo.selectList(map);
 	}
 	
+	public List<BallNoVO> selectBallNoVO(Map<String,Object> map){
+		return winNo.selectBallCntPerNo(map);
+	}
 	
 }

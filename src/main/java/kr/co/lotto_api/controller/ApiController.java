@@ -5,21 +5,25 @@ import java.util.Map;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kr.co.lotto_api.model.BallNoVO;
 import kr.co.lotto_api.model.WinNoVO;
 import kr.co.lotto_api.service.WinNoService;
  
 
-@Controller
+@RestController
 @RequestMapping("/api")
+@CrossOrigin
 public class ApiController {
 
 	@Autowired
@@ -27,14 +31,20 @@ public class ApiController {
    
 	ObjectMapper  om = new ObjectMapper();
 	
-    @RequestMapping(value = "/winNo", method = RequestMethod.GET)
-    public @ResponseBody String get(@RequestParam Map<String,Object> map) throws JsonProcessingException {
+    @GetMapping(value = "/winNo")
+    public @ResponseBody String getWinNo(@RequestParam Map<String,Object> map) throws JsonProcessingException {
     	List<WinNoVO> list = winNoService.selectList(map);
     	
         return om.writeValueAsString(list);
     }
     
-    @RequestMapping(value = "/winNo", method = RequestMethod.POST)
+    @GetMapping(value = "/ballNo")
+    public @ResponseBody String getBallNo(@RequestParam Map<String,Object> map) throws JsonProcessingException {
+    	List<BallNoVO> list = winNoService.selectBallNoVO(map);
+    	return om.writeValueAsString(list);
+    }
+    
+    @PostMapping(value = "/winNo")
     public @ResponseBody String set(@RequestParam Map<String,Object> map) throws JsonProcessingException {
     	JSONObject json = new JSONObject();
     	try {

@@ -30,11 +30,6 @@
 	</settings>
     <typeAliases>
         <typeAlias alias="map" type="java.util.Map" /> 
+    	<package name="kr.co.lotto_api.model"/>
     </typeAliases>
-    <!-- <mappers>
-        <mapper resource="mybatis/mapper/Common.xml"/>
-        <mapper resource="mybatis/mapper/Member.xml"/>
-        <mapper resource="mybatis/mapper/Log.xml"/>
-        
-    </mappers> -->
 </configuration>

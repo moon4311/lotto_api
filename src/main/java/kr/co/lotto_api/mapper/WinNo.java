@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import kr.co.lotto_api.model.BallNoVO;
 import kr.co.lotto_api.model.WinNoVO;
 /**
  * 
@@ -20,5 +21,6 @@ public interface WinNo {
   public int insert(Map<String,Object> map);
   public int update(Map<String,Object> map);
   public int delete(Map<String,Object> map);
-  
+
+  public List<BallNoVO> selectBallCntPerNo(Map<String,Object> map);
 }
