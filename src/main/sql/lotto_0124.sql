@@ -16,6 +16,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `ball_no_tb`
+--
+
+DROP TABLE IF EXISTS `ball_no_tb`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ball_no_tb` (
+  `ball_no` int(11) NOT NULL AUTO_INCREMENT,
+  `cnt1` int(11) DEFAULT NULL,
+  `cnt2` int(11) DEFAULT NULL,
+  `cnt3` int(11) DEFAULT NULL,
+  `cnt4` int(11) DEFAULT NULL,
+  `cnt5` int(11) DEFAULT NULL,
+  `cnt6` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ball_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COMMENT='공번호';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ball_no_tb`
+--
+
+LOCK TABLES `ball_no_tb` WRITE;
+/*!40000 ALTER TABLE `ball_no_tb` DISABLE KEYS */;
+INSERT INTO `ball_no_tb` VALUES (1,142,NULL,NULL,NULL,NULL,NULL),(2,115,20,NULL,NULL,NULL,NULL),(3,98,33,3,NULL,NULL,NULL),(4,92,42,4,NULL,NULL,NULL),(5,82,42,5,1,NULL,NULL),(6,73,38,11,3,NULL,NULL),(7,63,59,10,NULL,NULL,NULL),(8,46,63,18,3,NULL,NULL),(9,35,51,15,4,1,NULL),(10,39,64,33,1,1,NULL),(11,34,58,30,12,NULL,NULL),(12,33,58,35,13,2,NULL),(13,27,47,56,12,2,NULL),(14,28,47,43,22,1,NULL),(15,11,51,47,22,3,NULL),(16,21,33,44,30,3,NULL),(17,17,43,47,29,7,NULL),(18,7,45,55,30,10,NULL),(19,12,26,54,26,11,3),(20,4,29,56,31,15,4),(21,5,29,39,43,16,3),(22,4,20,38,32,16,3),(23,3,19,35,42,18,4),(24,2,14,40,48,28,3),(25,1,16,35,44,27,5),(26,2,9,35,51,29,6),(27,1,15,32,50,38,9),(28,NULL,4,34,37,38,11),(29,1,5,28,38,43,7),(30,NULL,6,29,43,30,12),(31,NULL,2,21,54,43,15),(32,NULL,3,10,42,38,20),(33,NULL,2,14,49,54,20),(34,NULL,3,10,40,68,31),(35,1,NULL,11,32,47,33),(36,NULL,2,7,31,52,42),(37,NULL,1,9,21,58,50),(38,NULL,NULL,3,22,57,50),(39,NULL,NULL,2,13,65,63),(40,NULL,NULL,1,12,49,79),(41,NULL,NULL,NULL,10,47,66),(42,NULL,NULL,NULL,4,42,85),(43,NULL,NULL,NULL,2,29,114),(44,NULL,NULL,NULL,NULL,11,123),(45,NULL,NULL,NULL,NULL,NULL,138);
+/*!40000 ALTER TABLE `ball_no_tb` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `win_no_tb`
 --
 
@@ -32,8 +61,9 @@ CREATE TABLE `win_no_tb` (
   `no5` tinyint(4) DEFAULT NULL,
   `no6` tinyint(4) DEFAULT NULL,
   `no7` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`drw_no`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`drw_no`),
+  UNIQUE KEY `dt_UNIQUE` (`dt`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,4 +85,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-23  0:39:36
+-- Dump completed on 2022-01-24  8:11:49
