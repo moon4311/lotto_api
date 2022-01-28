@@ -1,10 +1,9 @@
 ${AnsiColor.RED}
- ___ ___   ____  _      _     ${AnsiColor.BRIGHT_RED}
-|   T   T /    T| T    | T    ${AnsiColor.YELLOW}
-| _   _ |Y  o  || |    | |    ${AnsiColor.BRIGHT_GREEN}
-|  \_/  ||  _  || l___ | l___ ${AnsiColor.GREEN}
-|   |   ||  |  ||     T|     T${AnsiColor.BLUE}
-l___j___jl__j__jl_____jl_____j v1.0.0
-
+   ___   ___   _       ____  ____   ___      ___  ____  ${AnsiColor.BRIGHT_RED}
+  /   ] /   \ | T     /    T|    \ |   \    /  _]|    \ ${AnsiColor.YELLOW}
+ /   / Y     Y| |    Y  o  ||  _  Y|    \  /  [_ |  D  )${AnsiColor.BRIGHT_GREEN}
+(   (  |  O  || l___ |  _  ||  |  ||  D  YY    _]|    / ${AnsiColor.GREEN}
+ \   \ l     !|     T|  |  ||  |  ||     ||   [_ |  . \ ${AnsiColor.BLUE}
+  \___j \___/ l_____jl__j__jl__j__jl_____jl_____jl__j\_jv1.0.0
 ${Ansi.NORMAL}
 by   http://patorjk.com/software/taag/#p=display&f=Crawford&t=timopass
