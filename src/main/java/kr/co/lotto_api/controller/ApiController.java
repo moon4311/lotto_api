@@ -56,6 +56,10 @@ public class ApiController {
     	return json.toJSONString();
     }
  
-    
+    @GetMapping(value="/oddEven")
+    public @ResponseBody String getOddEven() throws JsonProcessingException{
+    	
+    	return om.writeValueAsString(winNoService.selectOddEven());
+    }
     
 }

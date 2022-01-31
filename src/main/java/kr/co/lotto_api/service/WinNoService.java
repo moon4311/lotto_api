@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.lotto_api.mapper.WinNo;
 import kr.co.lotto_api.model.BallNoVO;
+import kr.co.lotto_api.model.OddEvenVO;
 import kr.co.lotto_api.model.WinNoVO;
 
 @Transactional
@@ -46,6 +47,10 @@ public class WinNoService extends AbstractService implements ServiceImpl{
 	
 	public List<BallNoVO> selectBallNoVO(Map<String,Object> map){
 		return winNo.selectBallCntPerNo(map);
+	}
+	
+	public OddEvenVO selectOddEven(){
+		return winNo.selectOddEven();
 	}
 	
 }

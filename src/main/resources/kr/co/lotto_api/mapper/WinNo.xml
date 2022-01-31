@@ -2,17 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.lotto_api.mapper.WinNo">
  
- 	<sql id="tblnm">win_no_tb</sql>
+ 	<sql id="tblnm">WIN_NO_TB</sql>
  	
  	<!-- 한건 조회 -->
  	<select id="selectOne" parameterType="map" resultType="kr.co.lotto_api.model.WinNoVO">
 		SELECT 
-			DRW_NO,
-			DT,
-			NO1,NO2,NO3,NO4,NO5,NO6,NO7,
-			sum
-		FROM <include refid="tblnm" /> 
-		WHERE DRW_NO = #{drwNo}
+					DRW_NO,
+					DT,
+					NO1,NO2,NO3,NO4,NO5,NO6,NO7,
+					sum
+		FROM 	WIN_NO_TB 
+		WHERE 	DRW_NO = #{drwNo}
 	</select>
 	
 	
@@ -28,6 +28,7 @@
 		LIMIT ${startNo}, ${cnt}
 	</select>
  
+ 	<!-- 홀짝 비율 -->
 	<select id="selectBallCntPerNo" parameterType="map" resultType="BallNoVO">
 		SELECT BALL_NO,
 					 cnt1,
@@ -37,6 +38,32 @@
 					 cnt5,
 					 cnt6
 		FROM ball_no_tb
+	</select>
+	
+	<select id="selectOddEven" resultType="OddEvenVO">
+		select 	b.*,
+					 cnt0/drw_no*100 rate0,
+					 cnt1/drw_no*100 rate1,
+					 cnt2/drw_no*100 rate2,
+					 cnt3/drw_no*100 rate3,
+					 cnt4/drw_no*100 rate4,
+					 cnt5/drw_no*100 rate5,
+					 cnt6/drw_no*100 rate6
+		FROM	(
+				SELECT	  sum( case when cnt=0 then 1 else 0 end ) cnt0,
+							  sum( case when cnt=1 then 1 else 0 end ) cnt1,
+							  sum( case when cnt=2 then 1 else 0 end ) cnt2,
+							  sum( case when cnt=3 then 1 else 0 end ) cnt3,
+							  sum( case when cnt=4 then 1 else 0 end ) cnt4,
+							  sum( case when cnt=5 then 1 else 0 end ) cnt5,
+							  sum( case when cnt=6 then 1 else 0 end ) cnt6,
+			                  count(1) drw_no
+				FROM	(
+							SELECT
+							  		no1%2 + no2%2 + no3%2 + no4%2 + no5%2 + no6%2 cnt
+							FROM WIN_NO_TB
+							) a 
+				) b
 	</select>
 	
 	<update id="updateBallNo">
