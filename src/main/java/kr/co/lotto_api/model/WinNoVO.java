@@ -15,6 +15,7 @@ public class WinNoVO{
 	private String dt; //추첨일
 	@JsonIgnore
 	private int no1,no2,no3,no4,no5,no6,no7;
+	private int sum;
 	private int[] nos ;
 	
 	public void setNo7(int no7) {

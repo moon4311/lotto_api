@@ -58,8 +58,11 @@ public class ApiController {
  
     @GetMapping(value="/oddEven")
     public @ResponseBody String getOddEven() throws JsonProcessingException{
-    	
     	return om.writeValueAsString(winNoService.selectOddEven());
+    }
+    @GetMapping(value="/sumCnt")
+    public @ResponseBody String getSumCnt() throws JsonProcessingException{
+    	return om.writeValueAsString(winNoService.selectSumCnt());
     }
     
 }

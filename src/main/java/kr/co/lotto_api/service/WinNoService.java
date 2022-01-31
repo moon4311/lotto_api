@@ -53,4 +53,8 @@ public class WinNoService extends AbstractService implements ServiceImpl{
 		return winNo.selectOddEven();
 	}
 	
+	public List<WinNoVO> selectSumCnt(){
+		return winNo.selectSumCnt();
+	}
+	
 }

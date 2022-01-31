@@ -23,8 +23,18 @@ public interface WinNo {
   public int update(Map<String,Object> map);
   public int delete(Map<String,Object> map);
 
+  
   public List<BallNoVO> selectBallCntPerNo(Map<String,Object> map);
   
   
+  /** 홀짝 비율
+   * @return
+   */
   public OddEvenVO selectOddEven();
+  
+  /**
+   * 회차 합 갯수
+   */
+  public List<WinNoVO> selectSumCnt();
+  
 }
