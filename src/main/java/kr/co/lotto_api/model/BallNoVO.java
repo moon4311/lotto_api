@@ -7,7 +7,12 @@ import lombok.Setter;
 @Setter
 public class BallNoVO{
 	
-	private int ballNo;		//공 번호
-	private int cnt1,cnt2,cnt3,cnt4,cnt5,cnt6; //각 자리별 출현수
+	private int ballNo;			//공 번호
+	private int 	seq1Cnt,	//각 자리별 출현수
+						seq2Cnt,
+						seq3Cnt,
+						seq4Cnt,
+						seq5Cnt,
+						seq6Cnt;	
 	
 }

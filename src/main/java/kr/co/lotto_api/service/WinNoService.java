@@ -3,11 +3,14 @@ package kr.co.lotto_api.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.co.lotto_api.mapper.WeekBatch;
 import kr.co.lotto_api.mapper.WinNo;
 import kr.co.lotto_api.model.BallNoVO;
 import kr.co.lotto_api.model.OddEvenVO;
@@ -22,10 +25,15 @@ public class WinNoService extends AbstractService implements ServiceImpl{
 	@Autowired
 	private WinNo winNo;
 	
+	@Resource
+	private WeekBatch weekBatch;
 	
 	@Override
 	public void insert(Map<String, Object> map) {
 		winNo.insert(map);
+		weekBatch.updateLottoNo();
+		weekBatch.updateBallNo();
+		weekBatch.updateSumNo();
 	}
 	
 	@Override

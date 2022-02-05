@@ -14,13 +14,19 @@ public class WinNoVO{
 	private int drwNo; //회차
 	private String dt; //추첨일
 	@JsonIgnore
-	private int no1,no2,no3,no4,no5,no6,no7;
+	private int 	ballNo1,
+						ballNo2,
+						ballNo3,
+						ballNo4,
+						ballNo5,
+						ballNo6,
+						ballNo7;
 	private int sum;
 	private int[] nos ;
 	
-	public void setNo7(int no7) {
-		this.no7 = no7;
-		this.nos = new int[]{no1,no2,no3,no4,no5,no6,no7};
+	public void setBallNo7(int no7) {
+		this.ballNo7 = no7;
+		this.nos = new int[]{ballNo1,ballNo2,ballNo3,ballNo4,ballNo5,ballNo6,ballNo7};
 	}
 
 	@Override

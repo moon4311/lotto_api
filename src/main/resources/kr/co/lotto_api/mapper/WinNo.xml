@@ -6,11 +6,16 @@
  	
  	<!-- 한건 조회 -->
  	<select id="selectOne" parameterType="map" resultType="kr.co.lotto_api.model.WinNoVO">
-		SELECT 
-					DRW_NO,
-					DT,
-					NO1,NO2,NO3,NO4,NO5,NO6,NO7,
-					sum
+		SELECT 	DRW_NO,
+						DT,
+						BALL_NO1,
+						BALL_NO2,
+						BALL_NO3,
+						BALL_NO4,
+						BALL_NO5,
+						BALL_NO6,
+						BALL_NO7,
+						sum
 		FROM 	WIN_NO_TB 
 		WHERE 	DRW_NO = #{drwNo}
 	</select>
@@ -18,26 +23,31 @@
 	
  	<!-- 다건 조회 -->
  	<select id="selectList" parameterType="map" resultType="WinNoVO">
-		SELECT 
-			DRW_NO,
-			DT,
-			NO1,NO2,NO3,NO4,NO5,NO6,NO7
+		SELECT 	DRW_NO,
+						DT,
+						BALL_NO1,
+						BALL_NO2,
+						BALL_NO3,
+						BALL_NO4,
+						BALL_NO5,
+						BALL_NO6,
+						BALL_NO7,
+						sum
 		FROM <include refid="tblnm" />
 		ORDER BY DRW_NO DESC
-		
 		LIMIT ${startNo}, ${cnt}
 	</select>
 	
  	<!-- 각 자리별 횟수 -->
 	<select id="selectBallCntPerNo" parameterType="map" resultType="BallNoVO">
 		SELECT BALL_NO,
-					 cnt1,
-					 cnt2,
-					 cnt3,
-					 cnt4,
-					 cnt5,
-					 cnt6
-		FROM ball_no_tb
+					 SEQ1_CNT,
+					 SEQ2_CNT,
+					 SEQ3_CNT,
+					 SEQ4_CNT,
+					 SEQ5_CNT,
+					 SEQ6_CNT
+		FROM 	ball_no_tb
 	</select>
 	
  	<!-- 홀짝 비율 -->
@@ -60,52 +70,27 @@
 							  sum( case when cnt=6 then 1 else 0 end ) cnt6,
 			                  count(1) drw_no
 				FROM	(
-							SELECT
-							  		no1%2 + no2%2 + no3%2 + no4%2 + no5%2 + no6%2 cnt
-							FROM WIN_NO_TB
+							SELECT		BALL_NO1%2 
+									  		+ BALL_NO2%2 
+									  		+ BALL_NO3%2 
+									  		+ BALL_NO4%2 
+									  		+ BALL_NO5%2 
+									  		+ BALL_NO6%2 	cnt
+							FROM 		WIN_NO_TB
 							) a 
 				) b
 	</select>
 	
 	<select id="selectSumCnt"  resultType="SumCntVO">
-		SELECT		A.SUM_NO, 
-						COUNT(1) CNT,
-						COUNT(1)/(SELECT count(1) FROM WIN_NO_TB )*100 RATE
-		FROM (
-					SELECT 	NO1+NO2+NO3+NO4+NO5+NO6 SUM_NO
-					FROM 		WIN_NO_TB
-		) A
-		GROUP BY SUM_NO
+		SELECT		SUM_NO,
+						TOTAL_CNT,
+						TOTAL_RATE,
+						PAST_CNT,
+						case when PAST_CNT=0 then 0 else PAST_RATE end PAST_RATE 
+		FROM 		SUM_NO_TB
 	</select>
 	
 	
-	
-	
-	
-	<update id="updateBallNo">
-		UPDATE ball_no_tb A 
-			,(SELECT NO1 NO,COUNT(1) CNT FROM win_no_tb GROUP BY NO1 ) B1
-			,(SELECT NO2 NO,COUNT(1) CNT FROM win_no_tb GROUP BY NO2 ) B2
-			,(SELECT NO3 NO,COUNT(1) CNT FROM win_no_tb GROUP BY NO3 ) B3
-			,(SELECT NO4 NO,COUNT(1) CNT FROM win_no_tb GROUP BY NO4 ) B4
-			,(SELECT NO5 NO,COUNT(1) CNT FROM win_no_tb GROUP BY NO5 ) B5
-			,(SELECT NO6 NO,COUNT(1) CNT FROM win_no_tb GROUP BY NO6 ) B6
-		SET 
-			CNT1 = B1.CNT,
-			CNT2 = B2.CNT,
-			CNT3 = B3.CNT,
-			CNT4 = B4.CNT,
-			CNT5 = B5.CNT,
-			CNT6 = B6.CNT
-		WHERE 
-					A.BALL_NO = B1.NO
-			AND	A.BALL_NO = B2.NO
-			AND	A.BALL_NO = B3.NO
-			AND	A.BALL_NO = B4.NO
-			AND	A.BALL_NO = B5.NO
-			AND	A.BALL_NO = B6.NO
-	
-	</update>
 	
 	
 	<!-- 입력 -->
@@ -114,25 +99,27 @@
 		(
 			DRW_NO,
 			DT,
-			no1,
-			no2,
-			no3,
-			no4,
-			no5,
-			no6,
-			no7
+			ball_no1,
+			ball_no2,
+			ball_no3,
+			ball_no4,
+			ball_no5,
+			ball_no6,
+			ball_no7,
+			sum
 		)
 		values
 		(
 			#{drwNo},
 			#{dt},
-			#{no1},
-			#{no2},
-			#{no3},
-			#{no4},
-			#{no5},
-			#{no6},
-			#{no7}
+			#{ballNo1},
+			#{ballNo2},
+			#{ballNo3},
+			#{ballNo4},
+			#{ballNo5},
+			#{ballNo6},
+			#{ballNo7},
+			#{sum}
 		)
 	</insert>
 	

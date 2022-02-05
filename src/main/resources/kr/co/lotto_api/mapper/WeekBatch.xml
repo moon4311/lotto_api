@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.lotto_api.mapper.WeekBatch">
+
+	<!-- 814의  출현 횟수 -->
+	<update id="updateLottoNo">
+		UPDATE 	lotto_no_tb
+		SET			past_yn = 'Y'
+		WHERE		ball_no1 = #{ballNo1}
+		AND			ball_no2 = #{ballNo2}
+		AND			ball_no3 = #{ballNo3}
+		AND			ball_no4 = #{ballNo4}
+		AND			ball_no5 = #{ballNo5}
+		AND			ball_no6 = #{ballNo6}
+	</update>
+
+	<!-- 각 위치별 갯수 -->
+	<update id="updateBallNo">
+		UPDATE ball_no_tb A
+			,(SELECT NO1 NO,COUNT(1) CNT FROM win_no_tb GROUP BY NO1 ) B1
+			,(SELECT NO2 NO,COUNT(1) CNT FROM win_no_tb GROUP BY NO2 ) B2
+			,(SELECT NO3 NO,COUNT(1) CNT FROM win_no_tb GROUP BY NO3 ) B3
+			,(SELECT NO4 NO,COUNT(1) CNT FROM win_no_tb GROUP BY NO4 ) B4
+			,(SELECT NO5 NO,COUNT(1) CNT FROM win_no_tb GROUP BY NO5 ) B5
+			,(SELECT NO6 NO,COUNT(1) CNT FROM win_no_tb GROUP BY NO6 ) B6
+		SET 
+			CNT1 = B1.CNT,
+			CNT2 = B2.CNT,
+			CNT3 = B3.CNT,
+			CNT4 = B4.CNT,
+			CNT5 = B5.CNT,
+			CNT6 = B6.CNT
+		WHERE 
+					A.BALL_NO = B1.NO
+			AND	A.BALL_NO = B2.NO
+			AND	A.BALL_NO = B3.NO
+			AND	A.BALL_NO = B4.NO
+			AND	A.BALL_NO = B5.NO
+			AND	A.BALL_NO = B6.NO
+	</update>
+	
+	<!-- 합계 비율 --> 
+	<update id="updateSumNo">
+		UPDATE sum_no_tb a,
+					(
+						SELECT a.sum sum_no,
+									count(1) cnt,
+									count(1)/b.cnt*100 rate
+						FROM win_no_tb a
+								, (SELECT count(1) cnt FROM win_no_tb) b
+						GROUP BY a.sum
+					) b
+		SET 		a.past_cnt = b.cnt,
+					a.past_rate = b.rate
+        WHERE	a.sum_no = b.sum_no
+	</update>
+	
+	
+</mapper>

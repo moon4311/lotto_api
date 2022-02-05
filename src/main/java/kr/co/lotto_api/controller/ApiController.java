@@ -1,5 +1,6 @@
 package kr.co.lotto_api.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.lotto_api.model.BallNoVO;
 import kr.co.lotto_api.model.WinNoVO;
+import kr.co.lotto_api.service.LottoNoService;
 import kr.co.lotto_api.service.WinNoService;
  
 
@@ -28,6 +30,9 @@ public class ApiController {
 
 	@Autowired
     WinNoService winNoService;
+	
+	@Autowired
+	LottoNoService lottoNoService;
    
 	ObjectMapper  om = new ObjectMapper();
 	
@@ -65,4 +70,11 @@ public class ApiController {
     	return om.writeValueAsString(winNoService.selectSumCnt());
     }
     
+    
+//    @GetMapping(value="/set")
+    public @ResponseBody String set() {
+    	Map<String,Object> map = new HashMap<String,Object>();
+//    	lottoNoService.insert(map);
+    	return map.toString();
+    }
 }
