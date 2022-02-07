@@ -52,41 +52,17 @@
 	
  	<!-- 홀짝 비율 -->
 	<select id="selectOddEven" resultType="OddEvenVO">
-		select 	b.*,
-					 cnt0/drw_no*100 rate0,
-					 cnt1/drw_no*100 rate1,
-					 cnt2/drw_no*100 rate2,
-					 cnt3/drw_no*100 rate3,
-					 cnt4/drw_no*100 rate4,
-					 cnt5/drw_no*100 rate5,
-					 cnt6/drw_no*100 rate6
-		FROM	(
-				SELECT	  sum( case when cnt=0 then 1 else 0 end ) cnt0,
-							  sum( case when cnt=1 then 1 else 0 end ) cnt1,
-							  sum( case when cnt=2 then 1 else 0 end ) cnt2,
-							  sum( case when cnt=3 then 1 else 0 end ) cnt3,
-							  sum( case when cnt=4 then 1 else 0 end ) cnt4,
-							  sum( case when cnt=5 then 1 else 0 end ) cnt5,
-							  sum( case when cnt=6 then 1 else 0 end ) cnt6,
-			                  count(1) drw_no
-				FROM	(
-							SELECT		BALL_NO1%2 
-									  		+ BALL_NO2%2 
-									  		+ BALL_NO3%2 
-									  		+ BALL_NO4%2 
-									  		+ BALL_NO5%2 
-									  		+ BALL_NO6%2 	cnt
-							FROM 		WIN_NO_TB
-							) a 
-				) b
+		SELECT 	odd_cnt,
+						total_cnt, cast(total_rate as decimal(4,2)) total_rate, 
+			        	win_cnt, cast(win_rate as decimal(4,2)) win_rate
+		FROM		LOTTO_NO_ODD_TB
+		ORDER BY ODD_CNT
 	</select>
 	
 	<select id="selectSumCnt"  resultType="SumCntVO">
 		SELECT		SUM_NO,
-						TOTAL_CNT,
-						TOTAL_RATE,
-						PAST_CNT,
-						case when PAST_CNT=0 then 0 else PAST_RATE end PAST_RATE 
+						total_cnt, cast(total_rate as decimal(4,3)) total_rate, 
+			        	win_cnt, cast(win_rate as decimal(4,3)) win_rate 
 		FROM 		SUM_NO_TB
 	</select>
 	

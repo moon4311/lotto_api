@@ -13,6 +13,6 @@ import lombok.Setter;
 public class SumCntVO{
 	
 	private int sumNo; //합
-	private int totalCnt, pastCnt;		//갯수
-	private String totalRate, pastRate;//비율
+	private int totalCnt, winCnt;		//갯수
+	private String totalRate, winRate;//비율
 }

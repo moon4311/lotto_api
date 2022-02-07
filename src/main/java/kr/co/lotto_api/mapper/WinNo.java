@@ -30,7 +30,7 @@ public interface WinNo {
   /** 홀짝 비율
    * @return
    */
-  public OddEvenVO selectOddEven();
+  public List<OddEvenVO> selectOddEven();
   
   /**
    * 회차 합 갯수

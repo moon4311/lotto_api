@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.lotto_api.mapper.WeekBatch;
 import kr.co.lotto_api.mapper.WinNo;
@@ -16,7 +15,6 @@ import kr.co.lotto_api.model.BallNoVO;
 import kr.co.lotto_api.model.OddEvenVO;
 import kr.co.lotto_api.model.WinNoVO;
 
-@Transactional
 @Service
 @Repository
 public class WinNoService extends AbstractService implements ServiceImpl{
@@ -33,6 +31,7 @@ public class WinNoService extends AbstractService implements ServiceImpl{
 		winNo.insert(map);
 		weekBatch.updateLottoNo();
 		weekBatch.updateBallNo();
+		weekBatch.updateOddNo();
 		weekBatch.updateSumNo();
 	}
 	
@@ -57,7 +56,7 @@ public class WinNoService extends AbstractService implements ServiceImpl{
 		return winNo.selectBallCntPerNo(map);
 	}
 	
-	public OddEvenVO selectOddEven(){
+	public List<OddEvenVO> selectOddEven(){
 		return winNo.selectOddEven();
 	}
 	

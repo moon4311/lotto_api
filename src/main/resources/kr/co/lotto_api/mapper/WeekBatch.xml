@@ -17,19 +17,19 @@
 	<!-- 각 위치별 갯수 -->
 	<update id="updateBallNo">
 		UPDATE ball_no_tb A
-			,(SELECT NO1 NO,COUNT(1) CNT FROM win_no_tb GROUP BY NO1 ) B1
-			,(SELECT NO2 NO,COUNT(1) CNT FROM win_no_tb GROUP BY NO2 ) B2
-			,(SELECT NO3 NO,COUNT(1) CNT FROM win_no_tb GROUP BY NO3 ) B3
-			,(SELECT NO4 NO,COUNT(1) CNT FROM win_no_tb GROUP BY NO4 ) B4
-			,(SELECT NO5 NO,COUNT(1) CNT FROM win_no_tb GROUP BY NO5 ) B5
-			,(SELECT NO6 NO,COUNT(1) CNT FROM win_no_tb GROUP BY NO6 ) B6
+			,(SELECT ball_NO1 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO1 ) B1
+			,(SELECT ball_NO2 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO2 ) B2
+			,(SELECT ball_NO3 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO3 ) B3
+			,(SELECT ball_NO4 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO4 ) B4
+			,(SELECT ball_NO5 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO5 ) B5
+			,(SELECT ball_NO6 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO6 ) B6
 		SET 
-			CNT1 = B1.CNT,
-			CNT2 = B2.CNT,
-			CNT3 = B3.CNT,
-			CNT4 = B4.CNT,
-			CNT5 = B5.CNT,
-			CNT6 = B6.CNT
+			seq1_cnt = B1.CNT,
+			seq2_cnt= B2.CNT,
+			seq3_cnt= B3.CNT,
+			seq4_cnt= B4.CNT,
+			seq5_cnt= B5.CNT,
+			seq6_cnt= B6.CNT
 		WHERE 
 					A.BALL_NO = B1.NO
 			AND	A.BALL_NO = B2.NO
@@ -50,10 +50,17 @@
 								, (SELECT count(1) cnt FROM win_no_tb) b
 						GROUP BY a.sum
 					) b
-		SET 		a.past_cnt = b.cnt,
-					a.past_rate = b.rate
+		SET 		a.win_cnt = b.cnt,
+					a.win_rate = b.rate
         WHERE	a.sum_no = b.sum_no
 	</update>
-	
+	<update id="updateOddNo">
+		UPDATE		lotto_no_odd_tb a, 
+						(select odd_cnt, count(1) cnt from win_no_tb group by odd_cnt) b,
+				        (select count(1) cnt from win_no_tb) c
+		SET			a.win_cnt = b.cnt,
+						a.win_rate = b.cnt/c.cnt*100
+		WHERE a.odd_cnt = b.odd_cnt
+	</update>
 	
 </mapper>

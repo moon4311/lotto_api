@@ -17,5 +17,7 @@ public interface WeekBatch {
 	public int updateBallNo();
 	// 합계 비율
 	public int updateSumNo();
+	// 홀짝 비율
+	public int updateOddNo();
 
 }
