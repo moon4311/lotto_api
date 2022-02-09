@@ -24,6 +24,17 @@ public interface WinNo {
   public int delete(Map<String,Object> map);
 
   
+  /**
+   *  공순서별 최저/평균/최고
+   * @param map
+   * @return
+   */
+  public List<BallNoVO> selectBallNoMAM(Map<String,Object> map);
+  /**
+   * 공순서별 출현 수
+   * @param map
+   * @return
+   */
   public List<BallNoVO> selectBallCntPerNo(Map<String,Object> map);
   
   

@@ -44,9 +44,13 @@ public class ApiController {
     }
     
     @GetMapping(value = "/ballNo")
-    public @ResponseBody String getBallNo(@RequestParam Map<String,Object> map) throws JsonProcessingException {
+    public @ResponseBody Map<String,Object> getBallNo(@RequestParam Map<String,Object> map) throws JsonProcessingException {
     	List<BallNoVO> list = winNoService.selectBallNoVO(map);
-    	return om.writeValueAsString(list);
+    	List<BallNoVO> listMAM = winNoService.selectBallNoMAM(map);
+    	map.put("ballNoList", list);
+    	map.put("ballNoListMAM", listMAM);
+    	
+    	return map;
     }
     
     @PostMapping(value = "/winNo")

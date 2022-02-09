@@ -49,6 +49,38 @@
 					 SEQ6_CNT
 		FROM 	ball_no_tb
 	</select>
+ 	<!-- 각 자리별 최저/평균/최고 -->
+	<select id="selectBallNoMAM" parameterType="map" resultType="BallNoVO">
+		select 	'최소' BALL_NO,
+				min(ball_no1) SEQ1_CNT,
+				min(ball_no2) SEQ2_CNT,
+		        min(ball_no3) SEQ3_CNT,
+		        min(ball_no4) SEQ4_CNT,
+		        min(ball_no5) SEQ5_CNT,
+		        min(ball_no6) SEQ6_CNT
+		        from win_no_tb
+		union
+		select 	'평균',
+					avg(ball_no1),
+					avg(ball_no2),
+			        avg(ball_no3),
+			        avg(ball_no4),
+			        avg(ball_no5),
+			        avg(ball_no6)
+        from win_no_tb
+		union
+		select 	'최대',
+					max(ball_no1),
+					max(ball_no2),
+			        max(ball_no3),
+			        max(ball_no4),
+			        max(ball_no5),
+			        max(ball_no6)
+        from 		win_no_tb
+	</select>
+	
+	
+	
 	
  	<!-- 홀짝 비율 -->
 	<select id="selectOddEven" resultType="OddEvenVO">
