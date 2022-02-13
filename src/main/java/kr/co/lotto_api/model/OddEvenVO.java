@@ -16,4 +16,6 @@ public class OddEvenVO {
 	// 비율
 	private String totalRate, winRate;
 	
+	// 마지막 회차
+	private String lastDrwNo;
 }

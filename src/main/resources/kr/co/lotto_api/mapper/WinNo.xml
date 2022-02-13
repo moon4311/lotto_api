@@ -49,9 +49,9 @@
 					 SEQ6_CNT
 		FROM 	ball_no_tb
 	</select>
- 	<!-- 각 자리별 최저/평균/최고 -->
+ 	<!-- 각 자리별 최저/평균/최대/최다 -->
 	<select id="selectBallNoMAM" parameterType="map" resultType="BallNoVO">
-		select 	'최소' BALL_NO,
+			SELECT 	'최소' BALL_NO,
 				min(ball_no1) SEQ1_CNT,
 				min(ball_no2) SEQ2_CNT,
 		        min(ball_no3) SEQ3_CNT,
@@ -59,24 +59,33 @@
 		        min(ball_no5) SEQ5_CNT,
 		        min(ball_no6) SEQ6_CNT
 		        from win_no_tb
-		union
-		select 	'평균',
-					avg(ball_no1),
-					avg(ball_no2),
-			        avg(ball_no3),
-			        avg(ball_no4),
-			        avg(ball_no5),
-			        avg(ball_no6)
-        from win_no_tb
-		union
-		select 	'최대',
-					max(ball_no1),
-					max(ball_no2),
-			        max(ball_no3),
-			        max(ball_no4),
-			        max(ball_no5),
-			        max(ball_no6)
-        from 		win_no_tb
+		UNION
+			SELECT 	'평균',
+						round(avg(ball_no1)),
+	                    round(avg(ball_no2)),
+	                    round(avg(ball_no3)),
+	                    round(avg(ball_no4)),
+	                    round(avg(ball_no5)),
+	                    round(avg(ball_no6))
+	        FROM win_no_tb
+		UNION
+			SELECT 	'최대',
+						max(ball_no1),
+						max(ball_no2),
+				        max(ball_no3),
+				        max(ball_no4),
+				        max(ball_no5),
+				        max(ball_no6)
+	        FROM 		win_no_tb
+        UNION
+			SELECT		'최다',
+	        (SELECT ball_no1 FROM win_no_tb GROUP BY ball_no1 ORDER BY count(1) DESC LIMIT 1),
+	        (SELECT ball_no2 FROM win_no_tb GROUP BY ball_no2 ORDER BY count(1) DESC LIMIT 1),
+	        (SELECT ball_no3 FROM win_no_tb GROUP BY ball_no3 ORDER BY count(1) DESC LIMIT 1),
+	        (SELECT ball_no4 FROM win_no_tb GROUP BY ball_no4 ORDER BY count(1) DESC LIMIT 1),
+	        (SELECT ball_no5 FROM win_no_tb GROUP BY ball_no5 ORDER BY count(1) DESC LIMIT 1),
+	        (SELECT ball_no6 FROM win_no_tb GROUP BY ball_no6 ORDER BY count(1) DESC LIMIT 1)
+	        FROM dual
 	</select>
 	
 	
@@ -86,7 +95,8 @@
 	<select id="selectOddEven" resultType="OddEvenVO">
 		SELECT 	odd_cnt,
 						total_cnt, cast(total_rate as decimal(4,2)) total_rate, 
-			        	win_cnt, cast(win_rate as decimal(4,2)) win_rate
+			        	win_cnt, cast(win_rate as decimal(4,2)) win_rate,
+			        	last_drw_no
 		FROM		LOTTO_NO_ODD_TB
 		ORDER BY ODD_CNT
 	</select>

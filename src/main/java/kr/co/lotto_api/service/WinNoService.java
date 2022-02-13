@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import kr.co.lotto_api.mapper.Stats;
 import kr.co.lotto_api.mapper.WeekBatch;
 import kr.co.lotto_api.mapper.WinNo;
 import kr.co.lotto_api.model.BallNoVO;
@@ -22,6 +23,9 @@ public class WinNoService extends AbstractService implements ServiceImpl{
 	
 	@Autowired
 	private WinNo winNo;
+	
+	@Resource
+	private Stats stats;
 	
 	@Resource
 	private WeekBatch weekBatch;
@@ -52,8 +56,8 @@ public class WinNoService extends AbstractService implements ServiceImpl{
 		return winNo.selectList(map);
 	}
 	
-	public List<BallNoVO> selectBallNoMAM(Map<String,Object> map){
-		return winNo.selectBallNoMAM(map);
+	public List<BallNoVO> selectElementWinNo(Map<String,Object> map){
+		return stats.selectElementWinNo(map);
 	}
 	public List<BallNoVO> selectBallNoVO(Map<String,Object> map){
 		return winNo.selectBallCntPerNo(map);

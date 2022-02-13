@@ -13,6 +13,9 @@ public class BallNoVO{
 						seq3Cnt,
 						seq4Cnt,
 						seq5Cnt,
-						seq6Cnt;	
+						seq6Cnt;
+	
+	private int	min, max, avg, many;
+	private String zero;
 	
 }

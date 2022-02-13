@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.lotto_api.mapper.Stats">
+ 
+ 	<!-- 각 자리별 최저/평균/최대/최다 -->
+	<select id="selectElementWinNo" parameterType="map" resultType="BallNoVO">
+		SELECT 	'1' BALL_NO,
+						min(ball_no1) min,
+						round(avg(ball_no1)) avg,
+		                max(ball_no1) max,
+		                (SELECT ball_no FROM ball_no_tb ORDER BY seq1_cnt DESC LIMIT 1) many,
+		                (select group_concat(ball_no) from ball_no_tb where seq1_cnt = 0 and ball_no between 1 and 40) zero
+		FROM 		win_no_tb
+		union
+		SELECT 	'2' BALL_NO,
+						min(ball_no2) ,
+						round(avg(ball_no2)),
+		                max(ball_no2),
+		                (SELECT ball_no FROM ball_no_tb ORDER BY seq2_cnt DESC LIMIT 1),
+		                (select group_concat(ball_no) from ball_no_tb where seq2_cnt = 0 and ball_no between 2 and 41) zero
+		FROM 		win_no_tb
+		union
+		SELECT 	'3' BALL_NO,
+						min(ball_no3) ,
+						round(avg(ball_no3)),
+		                max(ball_no3),
+		                (SELECT ball_no FROM ball_no_tb ORDER BY seq3_cnt DESC LIMIT 1),
+		                (select group_concat(ball_no) from ball_no_tb where seq3_cnt = 0 and ball_no between 3 and 42) zero
+		FROM 		win_no_tb
+		union
+		SELECT 	'4' BALL_NO,
+						min(ball_no4) ,
+						round(avg(ball_no4)),
+		                max(ball_no4),
+		                (SELECT ball_no FROM ball_no_tb ORDER BY seq4_cnt DESC LIMIT 1),
+		                (select group_concat(ball_no) from ball_no_tb where seq4_cnt = 0 and ball_no between 4 and 43) zero
+		FROM 			win_no_tb
+		union
+		SELECT 	'5' BALL_NO,
+						min(ball_no5) ,
+						round(avg(ball_no5)),
+		                max(ball_no5),
+		                (SELECT ball_no FROM ball_no_tb ORDER BY seq5_cnt DESC LIMIT 1),
+		                (select group_concat(ball_no) from ball_no_tb where seq5_cnt = 0 and ball_no between 5 and 44) zero
+		FROM 			win_no_tb
+		union
+		SELECT 	'6' BALL_NO,
+						min(ball_no6) ,
+						round(avg(ball_no6)),
+						max(ball_no6),
+						(SELECT ball_no FROM ball_no_tb ORDER BY seq6_cnt DESC LIMIT 1),
+						(SELECT group_concat(ball_no) from ball_no_tb where seq6_cnt = 0 and ball_no between 5 and 45) zero
+		FROM 			win_no_tb
+
+	</select>
+	
+</mapper>

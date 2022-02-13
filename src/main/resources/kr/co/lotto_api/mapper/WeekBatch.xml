@@ -56,10 +56,11 @@
 	</update>
 	<update id="updateOddNo">
 		UPDATE		lotto_no_odd_tb a, 
-						(select odd_cnt, count(1) cnt from win_no_tb group by odd_cnt) b,
+						(select odd_cnt, max(drw_no) drw_no, count(1) cnt from win_no_tb group by odd_cnt) b,
 				        (select count(1) cnt from win_no_tb) c
 		SET			a.win_cnt = b.cnt,
-						a.win_rate = b.cnt/c.cnt*100
+						a.win_rate = b.cnt/c.cnt*100,
+						a.last_drw_no = b.drw_no
 		WHERE a.odd_cnt = b.odd_cnt
 	</update>
 	
