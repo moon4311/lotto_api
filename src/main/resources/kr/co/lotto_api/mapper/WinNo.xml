@@ -32,7 +32,8 @@
 						BALL_NO5,
 						BALL_NO6,
 						BALL_NO7,
-						sum
+						sum,
+						odd_cnt
 		FROM <include refid="tblnm" />
 		ORDER BY DRW_NO DESC
 		LIMIT ${startNo}, ${cnt}

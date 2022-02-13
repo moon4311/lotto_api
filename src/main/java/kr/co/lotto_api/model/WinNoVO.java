@@ -21,6 +21,7 @@ public class WinNoVO{
 						ballNo5,
 						ballNo6,
 						ballNo7;
+	private int oddCnt;
 	private int sum;
 	private int[] nos ;
 	
