@@ -80,13 +80,25 @@
 	        FROM 		win_no_tb
         UNION
 			SELECT		'최다',
-	        (SELECT ball_no1 FROM win_no_tb GROUP BY ball_no1 ORDER BY count(1) DESC LIMIT 1),
-	        (SELECT ball_no2 FROM win_no_tb GROUP BY ball_no2 ORDER BY count(1) DESC LIMIT 1),
-	        (SELECT ball_no3 FROM win_no_tb GROUP BY ball_no3 ORDER BY count(1) DESC LIMIT 1),
-	        (SELECT ball_no4 FROM win_no_tb GROUP BY ball_no4 ORDER BY count(1) DESC LIMIT 1),
-	        (SELECT ball_no5 FROM win_no_tb GROUP BY ball_no5 ORDER BY count(1) DESC LIMIT 1),
-	        (SELECT ball_no6 FROM win_no_tb GROUP BY ball_no6 ORDER BY count(1) DESC LIMIT 1)
+		        (SELECT ball_no1 FROM win_no_tb GROUP BY ball_no1 ORDER BY count(1) DESC LIMIT 1),
+		        (SELECT ball_no2 FROM win_no_tb GROUP BY ball_no2 ORDER BY count(1) DESC LIMIT 1),
+		        (SELECT ball_no3 FROM win_no_tb GROUP BY ball_no3 ORDER BY count(1) DESC LIMIT 1),
+		        (SELECT ball_no4 FROM win_no_tb GROUP BY ball_no4 ORDER BY count(1) DESC LIMIT 1),
+		        (SELECT ball_no5 FROM win_no_tb GROUP BY ball_no5 ORDER BY count(1) DESC LIMIT 1),
+		        (SELECT ball_no6 FROM win_no_tb GROUP BY ball_no6 ORDER BY count(1) DESC LIMIT 1)
 	        FROM dual
+	   UNION
+		   	select '최근 5건 ',
+				group_concat(ball_no1),
+				group_concat(ball_no2),
+				group_concat(ball_no3),
+				group_concat(ball_no4),
+				group_concat(ball_no5),
+				group_concat(ball_no6)
+			from (select * from win_no_tb
+			order by drw_no desc
+			limit 5
+			) a
 	</select>
 	
 	
