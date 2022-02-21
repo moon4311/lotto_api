@@ -16,6 +16,7 @@ public class BallNoVO{
 						seq6Cnt;
 	
 	private int	min, max, avg, many;
+	private String latest; //최근 5건
 	private String zero;
 	
 }

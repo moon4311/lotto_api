@@ -9,7 +9,8 @@
 						round(avg(ball_no1)) avg,
 		                max(ball_no1) max,
 		                (SELECT ball_no FROM ball_no_tb ORDER BY seq1_cnt DESC LIMIT 1) many,
-		                (select group_concat(ball_no) from ball_no_tb where seq1_cnt = 0 and ball_no between 1 and 40) zero
+		                (select group_concat(ball_no) from ball_no_tb where seq1_cnt = 0 and ball_no between 1 and 40) zero,
+                        (select group_concat(ball_no) from (select ball_no1 ball_no from win_no_tb order by drw_no desc limit 5)a ) latest
 		FROM 		win_no_tb
 		union
 		SELECT 	'2' BALL_NO,
@@ -17,7 +18,8 @@
 						round(avg(ball_no2)),
 		                max(ball_no2),
 		                (SELECT ball_no FROM ball_no_tb ORDER BY seq2_cnt DESC LIMIT 1),
-		                (select group_concat(ball_no) from ball_no_tb where seq2_cnt = 0 and ball_no between 2 and 41) zero
+		                (select group_concat(ball_no) from ball_no_tb where seq2_cnt = 0 and ball_no between 2 and 41) zero,
+                        (select group_concat(ball_no) from (select ball_no2 ball_no from win_no_tb order by drw_no desc limit 5)a ) latest
 		FROM 		win_no_tb
 		union
 		SELECT 	'3' BALL_NO,
@@ -25,7 +27,8 @@
 						round(avg(ball_no3)),
 		                max(ball_no3),
 		                (SELECT ball_no FROM ball_no_tb ORDER BY seq3_cnt DESC LIMIT 1),
-		                (select group_concat(ball_no) from ball_no_tb where seq3_cnt = 0 and ball_no between 3 and 42) zero
+		                (select group_concat(ball_no) from ball_no_tb where seq3_cnt = 0 and ball_no between 3 and 42) zero,
+                        (select group_concat(ball_no) from (select ball_no3 ball_no from win_no_tb order by drw_no desc limit 5)a ) latest
 		FROM 		win_no_tb
 		union
 		SELECT 	'4' BALL_NO,
@@ -33,7 +36,8 @@
 						round(avg(ball_no4)),
 		                max(ball_no4),
 		                (SELECT ball_no FROM ball_no_tb ORDER BY seq4_cnt DESC LIMIT 1),
-		                (select group_concat(ball_no) from ball_no_tb where seq4_cnt = 0 and ball_no between 4 and 43) zero
+		                (select group_concat(ball_no) from ball_no_tb where seq4_cnt = 0 and ball_no between 4 and 43) zero,
+                        (select group_concat(ball_no) from (select ball_no4 ball_no from win_no_tb order by drw_no desc limit 5)a ) latest
 		FROM 			win_no_tb
 		union
 		SELECT 	'5' BALL_NO,
@@ -41,7 +45,8 @@
 						round(avg(ball_no5)),
 		                max(ball_no5),
 		                (SELECT ball_no FROM ball_no_tb ORDER BY seq5_cnt DESC LIMIT 1),
-		                (select group_concat(ball_no) from ball_no_tb where seq5_cnt = 0 and ball_no between 5 and 44) zero
+		                (select group_concat(ball_no) from ball_no_tb where seq5_cnt = 0 and ball_no between 5 and 44) zero,
+                        (select group_concat(ball_no) from (select ball_no5 ball_no from win_no_tb order by drw_no desc limit 5)a ) latest
 		FROM 			win_no_tb
 		union
 		SELECT 	'6' BALL_NO,
@@ -49,9 +54,9 @@
 						round(avg(ball_no6)),
 						max(ball_no6),
 						(SELECT ball_no FROM ball_no_tb ORDER BY seq6_cnt DESC LIMIT 1),
-						(SELECT group_concat(ball_no) from ball_no_tb where seq6_cnt = 0 and ball_no between 5 and 45) zero
+						(SELECT group_concat(ball_no) from ball_no_tb where seq6_cnt = 0 and ball_no between 5 and 45) zero,
+                        (select group_concat(ball_no) from (select ball_no6 ball_no from win_no_tb order by drw_no desc limit 5)a  ) latest
 		FROM 			win_no_tb
-
 	</select>
 	
 </mapper>
