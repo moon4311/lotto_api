@@ -137,7 +137,8 @@
 			ball_no5,
 			ball_no6,
 			ball_no7,
-			sum
+			sum,
+			odd_cnt
 		)
 		values
 		(
@@ -150,7 +151,8 @@
 			#{ballNo5},
 			#{ballNo6},
 			#{ballNo7},
-			#{sum}
+			#{sum},
+			#{oddCnt}
 		)
 	</insert>
 	
