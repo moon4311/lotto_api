@@ -37,7 +37,7 @@ dependencies {
     compile 'commons-dbcp:commons-dbcp:1.4'
     compile 'org.apache.tomcat.embed:tomcat-embed-jasper'
     compile 'org.springframework.boot:spring-boot-starter-jdbc'
-    //compile 'org.springframework.boot:spring-boot-devtools'
+    compile 'org.springframework.boot:spring-boot-devtools'
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'com.google.zxing:core:3.2.1'
     compile 'com.google.zxing:javase:3.2.1'
