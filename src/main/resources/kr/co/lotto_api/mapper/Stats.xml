@@ -59,4 +59,9 @@
 		FROM 			win_no_tb
 	</select>
 	
+	<select id="selectBallNoRateList" parameterType="map" resultType="BallNoRateVO">
+		SELECT 	*
+		FROM 		BALL_NO_RATE_TB
+	</select>
+	
 </mapper>

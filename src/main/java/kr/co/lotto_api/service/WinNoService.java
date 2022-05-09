@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import kr.co.lotto_api.mapper.Stats;
 import kr.co.lotto_api.mapper.WeekBatch;
 import kr.co.lotto_api.mapper.WinNo;
+import kr.co.lotto_api.model.BallNoRateVO;
 import kr.co.lotto_api.model.BallNoVO;
 import kr.co.lotto_api.model.OddEvenVO;
 import kr.co.lotto_api.model.WinNoVO;
@@ -69,6 +70,13 @@ public class WinNoService extends AbstractService implements ServiceImpl{
 	
 	public List<WinNoVO> selectSumCnt(){
 		return winNo.selectSumCnt();
+	}
+	
+	/**
+	 *  자리별 통계( ball_no_rate_tb )
+	 */
+	public List<BallNoRateVO> selectBallNoRateList(Map<String,Object> map){
+		return stats.selectBallNoRateList(map);
 	}
 	
 }

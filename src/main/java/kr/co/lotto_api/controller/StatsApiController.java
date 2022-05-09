@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kr.co.lotto_api.model.BallNoRateVO;
 import kr.co.lotto_api.model.BallNoVO;
 import kr.co.lotto_api.model.WinNoVO;
 import kr.co.lotto_api.service.LottoNoService;
@@ -48,9 +49,17 @@ public class StatsApiController {
     }
     
     
+    @Deprecated
     @GetMapping(value = "/ballNo")
     public @ResponseBody Map<String,Object> getBallNo(@RequestParam Map<String,Object> map) throws JsonProcessingException {
     	List<BallNoVO> list = winNoService.selectBallNoVO(map);
+    	map.put("list", list);
+    	return map;
+    }
+    
+    @GetMapping(value = "/ballNoRate")
+    public @ResponseBody Map<String,Object> getBallNoRate(@RequestParam Map<String,Object> map) throws JsonProcessingException {
+    	List<BallNoRateVO> list = winNoService.selectBallNoRateList(map);
     	map.put("list", list);
     	return map;
     }

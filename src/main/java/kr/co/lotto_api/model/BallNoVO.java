@@ -5,6 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@Deprecated
 public class BallNoVO{
 	
 	private String  ballNo;			//공 번호

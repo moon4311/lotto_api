@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import kr.co.lotto_api.model.BallNoRateVO;
 import kr.co.lotto_api.model.BallNoVO;
 import kr.co.lotto_api.model.WinNoVO;
 /**
@@ -29,5 +30,6 @@ public interface Stats {
    * @return
    */
   public List<BallNoVO> selectElementWinNo(Map<String,Object> map);
-  
+
+  public List<BallNoRateVO> selectBallNoRateList(Map<String,Object> map);
 }
