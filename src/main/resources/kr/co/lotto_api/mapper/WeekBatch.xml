@@ -67,28 +67,33 @@
 	</update>
 	
 	<!-- 각 위치별 갯수  v2-->
-	<update id="updateBallNoRate">
-		UPDATE ball_no_rate_tb A
-			,(SELECT ball_NO1 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO1 ) B1
-			,(SELECT ball_NO2 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO2 ) B2
-			,(SELECT ball_NO3 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO3 ) B3
-			,(SELECT ball_NO4 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO4 ) B4
-			,(SELECT ball_NO5 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO5 ) B5
-			,(SELECT ball_NO6 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO6 ) B6
-		SET 
-			no1_rslt_cnt = B1.CNT,
-			no2_rslt_cnt = B2.CNT,
-			no3_rslt_cnt = B3.CNT,
-			no4_rslt_cnt = B4.CNT,
-			no5_rslt_cnt = B5.CNT,
-			no6_rslt_cnt = B6.CNT
-		WHERE 
-					A.BALL_NO = B1.NO
-			AND	A.BALL_NO = B2.NO
-			AND	A.BALL_NO = B3.NO
-			AND	A.BALL_NO = B4.NO
-			AND	A.BALL_NO = B5.NO
-			AND	A.BALL_NO = B6.NO
+		<update id="updateBallNoRate">
+		UPDATE		BALL_NO_RATE_TB A
+						LEFT JOIN (SELECT ball_NO1 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO1 ) B1
+					    ON A.ball_no = B1.NO
+						LEFT JOIN (SELECT ball_NO2 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO2 ) B2
+					    ON A.ball_no = B2.NO
+						LEFT JOIN (SELECT ball_NO3 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO3 ) B3
+						ON A.ball_no = B3.NO
+						LEFT JOIN (SELECT ball_NO4 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO4 ) B4
+						ON A.ball_no = B4.NO
+						LEFT JOIN (SELECT ball_NO5 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO5 ) B5
+						ON A.ball_no = B5.NO
+						LEFT JOIN (SELECT ball_NO6 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO6 ) B6
+						ON A.ball_no = B6.NO,
+				    	(select count(1) drwNo from win_no_tb ) C
+		SET			A.no1_rslt_cnt = nvl(B1.cnt,0),
+						A.no1_rslt_rate = A.no1_rslt_cnt / C.drwNo,
+						A.no2_rslt_cnt = nvl(B2.cnt,0),
+						A.no2_rslt_rate = A.no2_rslt_cnt / C.drwNo,
+						A.no3_rslt_cnt = nvl(B3.cnt,0),
+						A.no3_rslt_rate = A.no3_rslt_cnt / C.drwNo,
+						A.no4_rslt_cnt = nvl(B4.cnt,0),
+						A.no4_rslt_rate = A.no4_rslt_cnt / C.drwNo,
+						A.no5_rslt_cnt = nvl(B5.cnt,0),
+						A.no5_rslt_rate = A.no5_rslt_cnt / C.drwNo,
+						A.no6_rslt_cnt = nvl(B6.cnt,0),
+						A.no6_rslt_rate = A.no6_rslt_cnt / C.drwNo
 	</update>
 	
 </mapper>

@@ -35,7 +35,8 @@ public class WinNoService extends AbstractService implements ServiceImpl{
 	public void insert(Map<String, Object> map) {
 		winNo.insert(map);
 		weekBatch.updateLottoNo();
-		weekBatch.updateBallNo();
+//		weekBatch.updateBallNo();
+		weekBatch.updateBallNoRate();
 		weekBatch.updateOddNo();
 		weekBatch.updateSumNo();
 	}
