@@ -121,7 +121,21 @@
 		FROM 		SUM_NO_TB
 	</select>
 	
-	
+	<select id="selectPreviousAppearance" resultType="BallNoRateVO">
+		SELECT sum(no) no1RsltCnt , sum(no)/count(1)*100 no1RsltRate
+		FROM (
+			SELECT 
+				a.ball_no1 in ( b.ball_no1, b.ball_no2, b.ball_no3,b.ball_no4,b.ball_no5,b.ball_no6) or
+				a.ball_no2 in ( b.ball_no1, b.ball_no2, b.ball_no3,b.ball_no4,b.ball_no5,b.ball_no6) or
+				a.ball_no3 in ( b.ball_no1, b.ball_no2, b.ball_no3,b.ball_no4,b.ball_no5,b.ball_no6) or
+				a.ball_no4 in ( b.ball_no1, b.ball_no2, b.ball_no3,b.ball_no4,b.ball_no5,b.ball_no6) or
+				a.ball_no5 in ( b.ball_no1, b.ball_no2, b.ball_no3,b.ball_no4,b.ball_no5,b.ball_no6) or
+				a.ball_no6 in ( b.ball_no1, b.ball_no2, b.ball_no3,b.ball_no4,b.ball_no5,b.ball_no6) no
+			FROM win_no_tb a
+			LEFT JOIN win_no_tb b
+			ON a.drw_no = b.drw_no-1
+		) c
+	</select>
 	
 	
 	<!-- 입력 -->

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
-
+import kr.co.lotto_api.model.BallNoRateVO;
 import kr.co.lotto_api.model.BallNoVO;
 import kr.co.lotto_api.model.OddEvenVO;
 import kr.co.lotto_api.model.WinNoVO;
@@ -48,4 +48,5 @@ public interface WinNo {
    */
   public List<WinNoVO> selectSumCnt();
   
+  public BallNoRateVO selectPreviousAppearance();
 }
