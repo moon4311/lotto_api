@@ -83,17 +83,17 @@
 						ON A.ball_no = B6.NO,
 				    	(select count(1) drwNo from win_no_tb ) C
 		SET			A.no1_rslt_cnt = nvl(B1.cnt,0),
-						A.no1_rslt_rate = A.no1_rslt_cnt / C.drwNo,
+						A.no1_rslt_rate = A.no1_rslt_cnt / C.drwNo * 100,
 						A.no2_rslt_cnt = nvl(B2.cnt,0),
-						A.no2_rslt_rate = A.no2_rslt_cnt / C.drwNo,
+						A.no2_rslt_rate = A.no2_rslt_cnt / C.drwNo * 100,
 						A.no3_rslt_cnt = nvl(B3.cnt,0),
-						A.no3_rslt_rate = A.no3_rslt_cnt / C.drwNo,
+						A.no3_rslt_rate = A.no3_rslt_cnt / C.drwNo * 100,
 						A.no4_rslt_cnt = nvl(B4.cnt,0),
-						A.no4_rslt_rate = A.no4_rslt_cnt / C.drwNo,
+						A.no4_rslt_rate = A.no4_rslt_cnt / C.drwNo * 100,
 						A.no5_rslt_cnt = nvl(B5.cnt,0),
-						A.no5_rslt_rate = A.no5_rslt_cnt / C.drwNo,
+						A.no5_rslt_rate = A.no5_rslt_cnt / C.drwNo * 100,
 						A.no6_rslt_cnt = nvl(B6.cnt,0),
-						A.no6_rslt_rate = A.no6_rslt_cnt / C.drwNo
+						A.no6_rslt_rate = A.no6_rslt_cnt / C.drwNo * 100
 	</update>
 	
 </mapper>
