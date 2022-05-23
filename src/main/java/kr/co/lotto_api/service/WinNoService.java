@@ -2,13 +2,10 @@ package kr.co.lotto_api.service;
 
 import java.util.List;
 import java.util.Map;
-
 import javax.annotation.Resource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
-
 import kr.co.lotto_api.mapper.Stats;
 import kr.co.lotto_api.mapper.WeekBatch;
 import kr.co.lotto_api.mapper.WinNo;
@@ -66,7 +63,7 @@ public class WinNoService extends AbstractService implements ServiceImpl{
 	}
 	
 	public List<OddEvenVO> selectOddEven(){
-		return winNo.selectOddEven();
+		return stats.selectOddEven();
 	}
 	
 	public List<WinNoVO> selectSumCnt(){

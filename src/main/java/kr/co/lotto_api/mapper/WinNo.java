@@ -37,12 +37,6 @@ public interface WinNo {
    */
   public List<BallNoVO> selectBallCntPerNo(Map<String,Object> map);
   
-  
-  /** 홀짝 비율
-   * @return
-   */
-  public List<OddEvenVO> selectOddEven();
-  
   /**
    * 회차 합 갯수
    */

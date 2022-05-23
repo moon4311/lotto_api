@@ -2,11 +2,10 @@ package kr.co.lotto_api.mapper;
 
 import java.util.List;
 import java.util.Map;
-
 import org.apache.ibatis.annotations.Mapper;
-
 import kr.co.lotto_api.model.BallNoRateVO;
 import kr.co.lotto_api.model.BallNoVO;
+import kr.co.lotto_api.model.OddEvenVO;
 import kr.co.lotto_api.model.WinNoVO;
 /**
  * 
@@ -32,4 +31,11 @@ public interface Stats {
   public List<BallNoVO> selectElementWinNo(Map<String,Object> map);
 
   public List<BallNoRateVO> selectBallNoRateList(Map<String,Object> map);
+  
+  
+  /** 홀짝 비율
+   * @return
+   */
+  public List<OddEvenVO> selectOddEven();
+  
 }

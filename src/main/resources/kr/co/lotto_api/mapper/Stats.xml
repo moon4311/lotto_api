@@ -59,9 +59,21 @@
 		FROM 			win_no_tb
 	</select>
 	
+	<!-- 각 자리별 이론/실제  -->
 	<select id="selectBallNoRateList" parameterType="map" resultType="BallNoRateVO">
 		SELECT 	*
 		FROM 		BALL_NO_RATE_TB
+	</select>
+	
+		
+ 	<!-- 홀짝 비율 -->
+	<select id="selectOddEven" resultType="OddEvenVO">
+		SELECT 	odd_cnt,
+						total_cnt, cast(total_rate as decimal(4,2)) total_rate, 
+			        	win_cnt, cast(win_rate as decimal(4,2)) win_rate,
+			        	last_drw_no
+		FROM		LOTTO_NO_ODD_TB
+		ORDER BY ODD_CNT
 	</select>
 	
 </mapper>
