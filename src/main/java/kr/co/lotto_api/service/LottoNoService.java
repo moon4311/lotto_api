@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import kr.co.lotto_api.mapper.LottoNo;
+import kr.co.lotto_api.mapper.Strategy;
 import kr.co.lotto_api.model.LottoNoVO;
 
 @Service
@@ -16,6 +17,9 @@ public class LottoNoService extends AbstractService implements ServiceImpl {
 
 	@Autowired
 	private LottoNo lottoNo;
+	
+	@Autowired
+	private Strategy lottoNoReduce;
 
 	@Override
 	public void insert(Map<String, Object> map) {
@@ -54,5 +58,18 @@ public class LottoNoService extends AbstractService implements ServiceImpl {
 	public List<LottoNoVO> selectList(Map<String, Object> map) {
 		return lottoNo.selectList(map);
 	}
+	
+	/**
+	 * 전략. 로또번호 추출
+	 * @param map
+	 * @return
+	 */
+	public int selectReduceCnt(Map<String, Object> map) {
+		return lottoNoReduce.selectCnt(map);
+	}
+	public List<LottoNoVO> selectReduceList(Map<String, Object> map) {
+		return lottoNoReduce.selectList(map);
+	}
+	
 
 }
