@@ -39,6 +39,10 @@
 		</encoder>
 	</appender>
 
+	<logger name="kr.co.lotto_api">
+		<level value="DEBUG"/>
+	</logger>
+
 	<logger name="org.apache.mybatis">
 		<level value="WARN"/>
 		<appender-ref ref="CONSOLE"/>

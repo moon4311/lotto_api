@@ -31,14 +31,23 @@ public class StrategyApiController {
 	
     @GetMapping(value = "/getList")
     public @ResponseBody String getList(@RequestParam Map<String,Object> map) throws JsonProcessingException {
-    	String noListStr = (String)map.get("noList");
-    	String[] arr = noListStr.split(",");
+    	
     	
     	try {
     		int limit = (int) map.get("limit");
     		limit = limit * 1;
     	}catch(Exception e) {
     		map.put("limit", 10);
+    	}
+    	
+    	String noListStr = (String)map.get("noList");
+    	String[] arr = noListStr.split(",");
+    	if(arr.length> 1) {
+	    	List<String> noList = new ArrayList<String>();
+	    	for(String one : arr) {
+	    		noList.add(one);
+	    	}
+	    	map.put("noList",noList);
     	}
     	
     	if(arr.length> 1) {
@@ -48,6 +57,7 @@ public class StrategyApiController {
 	    	}
 	    	map.put("noList",noList);
     	}
+
     	Map<String,Object> rslt = new HashMap<String,Object>();
     	rslt.put("cnt", lottoNoService.selectReduceCnt(map));
     	rslt.put("list", lottoNoService.selectReduceList(map));
