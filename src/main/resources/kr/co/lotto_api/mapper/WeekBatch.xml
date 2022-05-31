@@ -32,7 +32,7 @@
 	</update>
 	<!-- 홀/짝 수 -->
 	<update id="updateOddNo">
-		UPDATE		lotto_no_odd_tb a, 
+		UPDATE		ODD_RATE_TB a, 
 						(select odd_cnt, max(drw_no) drw_no, count(1) cnt from win_no_tb group by odd_cnt) b,
 				        (select count(1) cnt from win_no_tb) c
 		SET			a.win_cnt = b.cnt,

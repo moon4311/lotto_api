@@ -72,7 +72,7 @@
 						total_cnt, cast(total_rate as decimal(4,2)) total_rate, 
 			        	win_cnt, cast(win_rate as decimal(4,2)) win_rate,
 			        	last_drw_no
-		FROM		LOTTO_NO_ODD_TB
+		FROM		ODD_RATE_TB
 		ORDER BY ODD_CNT
 	</select>
 	
