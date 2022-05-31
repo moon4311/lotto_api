@@ -2,11 +2,9 @@ package kr.co.lotto_api.mapper;
 
 import java.util.List;
 import java.util.Map;
-
 import org.apache.ibatis.annotations.Mapper;
 import kr.co.lotto_api.model.BallNoRateVO;
 import kr.co.lotto_api.model.BallNoVO;
-import kr.co.lotto_api.model.OddEvenVO;
 import kr.co.lotto_api.model.WinNoVO;
 /**
  * 
@@ -36,6 +34,12 @@ public interface WinNo {
    * @return
    */
   public List<BallNoVO> selectBallCntPerNo(Map<String,Object> map);
+  
+  /**
+   * 검색 결과 수
+   * @return
+   */
+  public int selectCount(Map<String,Object> map );
   
   /**
    * 회차 합 갯수

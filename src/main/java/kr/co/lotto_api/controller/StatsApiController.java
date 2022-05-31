@@ -59,8 +59,8 @@ public class StatsApiController {
     
     @GetMapping(value = "/ballNoRate")
     public @ResponseBody Map<String,Object> getBallNoRate(@RequestParam Map<String,Object> map) throws JsonProcessingException {
-    	List<BallNoRateVO> list = winNoService.selectBallNoRateList(map);
-    	map.put("list", list);
+    	map.put("list", winNoService.selectBallNoRateList(map));
+    	map.put("drwNo", winNoService.selectCount(map));
     	return map;
     }
     

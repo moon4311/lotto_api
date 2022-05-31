@@ -51,6 +51,10 @@ public class WinNoService extends AbstractService implements ServiceImpl{
 		return winNo.selectOne(map);
 	}
 	
+	public int selectCount(Map<String,Object> map) {
+	  return winNo.selectCount(map);
+	}
+	
 	public List<WinNoVO> selectList(Map<String,Object> map){
 		return winNo.selectList(map);
 	}
