@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.lotto_api.mapper.StrategyHistory">
+ 
+ 	<sql id="tblnm">strategy_history_tb</sql>
+ 	
+ 	<!-- 다건 조회 -->
+ 	<select id="selectList" parameterType="map" resultType="map">
+		SELECT 	*
+		FROM 		<include refid="tblnm" />
+	</select>
+	
+ 	<!-- 건수 조회 -->
+ 	<select id="selectCnt" parameterType="map" resultType="map">
+		SELECT 	count(1)
+		FROM 		<include refid="tblnm" />
+	</select>
+	
+ 	<!-- 단건 조회 -->
+ 	<select id="selectOne" parameterType="map" resultType="map">
+		SELECT 	*
+		FROM 		<include refid="tblnm" />
+		WHERE 1=1		
+	</select>
+	
+	<!-- 입력 -->
+	<insert id="insert" parameterType="map">
+		INSERT INTO <include refid="tblnm"/>
+		(
+			odd_cnt,
+			min_sum,
+			max_sum,
+			max_no1,
+			max_no2,
+			min_no5,
+			min_no6,
+			ball_list
+		)
+		values
+		(
+			#{oddMin},
+			#{sumMin},
+			#{sumMax},
+			#{firstNo},
+			#{secondNo},
+			#{fiveNo},
+			#{lastNo},
+			#{noList}
+		)
+	</insert>
+</mapper>
