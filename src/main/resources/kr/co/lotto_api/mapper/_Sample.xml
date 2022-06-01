@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.lotto_api.mapper.Sample">
+ 
+ 	<sql id="tblnm">${tableNm}</sql>
+ 	
+ 	<!-- 다건 조회 -->
+ 	<select id="selectList" parameterType="map" resultType="map">
+		SELECT 	*
+		FROM 		<include refid="tblnm" />
+	</select>
+	
+ 	<!-- 단건 조회 -->
+ 	<select id="selectOne" parameterType="map" resultType="map">
+		SELECT 	*
+		FROM 		<include refid="tblnm" />
+		WHERE		
+	</select>
+	
+	<!-- 입력 -->
+	<insert id="insert" parameterType="map">
+		INSERT INTO <include refid="tblnm"/>
+		(
+			BALL_NO1
+		)
+		values
+		(
+			#{ballNo1}
+		)
+	</insert>
+</mapper>
