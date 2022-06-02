@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class LottoNoVO{
 	
-	private int lottolNo;		//순서.
+	private String lottoNo;		//순서.
 	private int ballNo1, 
 					 ballNo2,
 					 ballNo3,

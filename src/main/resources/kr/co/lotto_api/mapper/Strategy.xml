@@ -29,12 +29,28 @@
  	<!--  추출 목록 조회 -->
  	<select id="selectList" parameterType="map" resultType="LottoNoVO">
 		SELECT 	RAND(),
+						LOTTO_NO,
 						BALL_NO1,
 						BALL_NO2,
 						BALL_NO3,
 						BALL_NO4,
 						BALL_NO5,
-						BALL_NO6
+						BALL_NO6,
+						
+						BALL_NO1+
+						BALL_NO2+
+						BALL_NO3+
+						BALL_NO4+
+						BALL_NO5+
+						BALL_NO6 SUM,
+						
+						BALL_NO1%2+
+						BALL_NO2%2+
+						BALL_NO3%2+
+						BALL_NO4%2+
+						BALL_NO5%2+
+						BALL_NO6%2 ODD_CNT
+						
 		FROM 		LOTTO_NO_REDUCE_TB
 		WHERE 1=1
 		<include refid="selectWhere"/>
