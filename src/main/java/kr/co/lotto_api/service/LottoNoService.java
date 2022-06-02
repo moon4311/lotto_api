@@ -1,5 +1,6 @@
 package kr.co.lotto_api.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,12 +19,8 @@ public class LottoNoService extends AbstractService implements ServiceImpl {
 	@Autowired
 	private LottoNo lottoNo;
 	
-	@Autowired
-	private Strategy lottoNoReduce;
-
 	@Override
 	public void insert(Map<String, Object> map) {
-		
 		for(int a=1; a<41;a++) {
 			for(int b=a+1;b<42;b++) {
 				for(int c=b+1;c<43;c++) {
@@ -57,18 +54,6 @@ public class LottoNoService extends AbstractService implements ServiceImpl {
 
 	public List<LottoNoVO> selectList(Map<String, Object> map) {
 		return lottoNo.selectList(map);
-	}
-	
-	/**
-	 * 전략. 로또번호 추출
-	 * @param map
-	 * @return
-	 */
-	public int selectReduceCnt(Map<String, Object> map) {
-		return lottoNoReduce.selectCnt(map);
-	}
-	public List<LottoNoVO> selectReduceList(Map<String, Object> map) {
-		return lottoNoReduce.selectList(map);
 	}
 	
 

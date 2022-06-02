@@ -30,4 +30,10 @@ public interface Strategy {
    */
   public List<LottoNoVO> selectList(Map<String,Object> map);
   
+  
+  public void insertHistory(Map<String,Object> map);
+
+  public List<Map<String,Object>> selectHistoryList(Map<String,Object> map);
+  public int selectHistoryCnt(Map<String,Object> map);
+  public Map<String,Object> selectHistoryOne(Map<String,Object> map);
 }

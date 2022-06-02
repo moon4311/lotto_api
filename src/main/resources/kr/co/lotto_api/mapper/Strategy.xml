@@ -8,11 +8,8 @@
 		AND ball_no5 <![CDATA[ >= ]]> #{fiveNo}
 		AND ball_no6 <![CDATA[ >= ]]> #{lastNo}
 		AND sum between #{sumMin} AND #{sumMax}
-		<if test="oddMin==oddMax">
-		AND	odd_cnt = #{oddMin}
-		</if>
-		<if test="oddMin!=oddMax">
-		AND odd_cnt between #{oddMin} and #{oddMax}
+		<if test="oddList!=null">
+		AND odd_cnt in ( <foreach collection="oddList" item="no" separator=",">#{no}</foreach>)
 		</if>
 		AND ball_no1 in ( <foreach collection="noList" item="no" separator=",">#{no}</foreach>)
 		AND ball_no2 in ( <foreach collection="noList" item="no" separator=",">#{no}</foreach>)
@@ -42,8 +39,62 @@
 		WHERE 1=1
 		<include refid="selectWhere"/>
 		ORDER BY 1
-		LIMIT ${limit}
+		LIMIT ${rows}
 	</select>
 	
+	
+	<!-- ############### -->
+	<!-- ##### 이력 ##### -->
+	<!-- ############### -->
+	
+	<insert id="insertHistory" parameterType="map">
+		INSERT INTO strategy_history_tb
+		(
+			member_no,
+			odd_arr,
+			max_no1,
+			max_no2,
+			min_no5,
+			min_no6,
+			sum_min,
+			sum_max,
+			no_arr,
+			`rows`,
+			regist_dt
+		)
+		values
+		(
+			#{memberNo},
+			#{oddArr},
+			#{firstNo},
+			#{secondNo},
+			#{fiveNo},
+			#{lastNo},
+			#{sumMin},
+			#{sumMax},
+			#{noArr},
+			#{rows},
+			now()
+		)
+	</insert>
+
+	<!-- 다건 조회 -->
+ 	<select id="selectHistoryList" parameterType="map" resultType="map">
+		SELECT 	*
+		FROM 		strategy_history_tb
+	</select>
+	
+ 	<!-- 건수 조회 -->
+ 	<select id="selectHistoryCnt" parameterType="map" resultType="int">
+		SELECT 	count(1)
+		FROM 		strategy_history_tb
+	</select>
+	
+ 	<!-- 단건 조회 -->
+ 	<select id="selectHistoryOne" parameterType="map" resultType="map">
+		SELECT 	*
+		FROM 		strategy_history_tb
+		WHERE 		history_no = #{historyNo}
+	</select>	
 	
 </mapper>
