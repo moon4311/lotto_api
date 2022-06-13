@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.lotto_api.mapper.Member">
+ 
+ 	<sql id="tblnm">MEMBER_TB</sql>
+ 	
+ 	<!-- 다건 조회 -->
+ 	<select id="selectList" parameterType="map" resultType="MemberVO">
+		SELECT 	*
+		FROM 		<include refid="tblnm" />
+		LIMIT 10
+	</select>
+	
+	<!-- 입력 -->
+	<insert id="insert" parameterType="map">
+		INSERT INTO <include refid="tblnm"/>
+		(
+			id,
+			display_name,
+			email,
+			photo_url,
+			regist_dt,
+			last_login_dt
+		)
+		values
+		(
+			#{id},
+			#{displayName},
+			#{email},
+			#{photoUrl},
+			now(),
+			now()
+		)
+	</insert>
+	
+	<!-- 로그인 -->
+	<update id="login" parameterType="map">
+		UPDATE 	<include refid="tblnm"/>
+		SET			last_login_dt = now()
+		WHERE		id = #{id}
+	</update>
+</mapper>

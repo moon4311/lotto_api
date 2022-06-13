@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kr.co.lotto_api.mapper.Member;
 import kr.co.lotto_api.model.WinNoVO;
 import kr.co.lotto_api.service.LottoNoService;
 import kr.co.lotto_api.service.WinNoService;
@@ -34,6 +35,10 @@ public class ApiController {
 	@Autowired
 	LottoNoService lottoNoService;
    
+	@Autowired
+	Member member;
+	
+	
 	ObjectMapper  om = new ObjectMapper();
 	
     @GetMapping(value = "/winNo")
@@ -53,6 +58,21 @@ public class ApiController {
     	}
     	return json.toJSONString();
     }
+    
+    @PostMapping(value = "/login")
+    public @ResponseBody JSONObject login(@RequestBody Map<String,Object> map) throws JsonProcessingException{
+    	JSONObject json = new JSONObject();
+    	//회원 입력시도, 이미존재하면 로그인 처리
+    	try{
+    		member.insert(map);
+    		json.put("status", "OK");
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    		member.login(map);
+    	}
+    	return json;
+    }
+    
  
     
 //    @GetMapping(value="/set")

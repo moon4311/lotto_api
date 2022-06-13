@@ -18,5 +18,5 @@ public interface Member {
   public List<MemberVO> selectList(Map<String,Object> map);
   public MemberVO selectOne(Map<String,Object> map);
   public int insert(Map<String,Object> map);
-  
+  public void login(Map<String,Object> map);
 }
