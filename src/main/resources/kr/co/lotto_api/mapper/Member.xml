@@ -39,4 +39,12 @@
 		SET			last_login_dt = now()
 		WHERE		id = #{id}
 	</update>
+	
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="map">
+		DELETE 
+		FROM		<include refid="tblnm"/>
+		WHERE	id = #{id}
+		AND		email = #{email}
+	</delete>
 </mapper>
