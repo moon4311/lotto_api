@@ -16,6 +16,10 @@ public interface TicketsHistory {
 
   public List<TicketVO> selectList(Map<String,Object> map);
   public TicketVO selectOne(Map<String,Object> map);
+  public int selectCnt(Map<String,Object> map);
   public int insert(Map<String,Object> map);
+  
+  public int insertList(List<TicketVO> list);
+  public boolean checkTr(String tr);
   
 }

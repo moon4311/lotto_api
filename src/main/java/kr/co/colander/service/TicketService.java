@@ -36,6 +36,29 @@ public class TicketService extends AbstractService implements ServiceImpl {
 		}
 	}
 
+	public JSONObject insertList(List<TicketVO> list) {
+	  JSONObject rslt = (JSONObject) _jsonFail.clone();
+	  
+	  if(list == null || list.size()==0) {
+	    rslt.put("msg", "list is null  or  0");
+	    return rslt;
+	  }else {
+	    if(ticketHistory.checkTr(list.get(0).getTr())){
+	      rslt.put("msg", "already inserted");
+	      return rslt;
+	    }
+	  }
+	  
+	  try {
+	    ticketHistory.insertList(list);
+	    return _jsonOk;
+	  }catch(Exception e) {
+	    e.printStackTrace();
+	    rslt.put("msg", e.getMessage());
+	    return rslt;
+	  }
+	}
+	
 	@Override
 	public JSONObject update(Map<String, Object> map) {
 		return _jsonOk;

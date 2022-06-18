@@ -1,6 +1,7 @@
 package kr.co.colander.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.annotations.Delete;
 import org.json.simple.JSONObject;
@@ -13,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
-
-import kr.co.colander.mapper.Member;
+import kr.co.colander.model.TicketVO;
+import kr.co.colander.service.TicketService;
  
 
 @RestController
@@ -23,23 +24,12 @@ import kr.co.colander.mapper.Member;
 public class TicketApiController {
 
 	@Autowired
-	Member member;
+	TicketService ticketService;
 	
 	
     @PostMapping(value = "/add")
-    public @ResponseBody JSONObject add(@RequestBody Map<String,Object> map) throws JsonProcessingException{
-    	JSONObject json = new JSONObject();
-    	//회원 입력시도, 이미존재하면 로그인 처리
-    	String result = "insert"; 
-    	try{
-    		
-    		member.insert(map);
-    		json.put("status", "OK");
-    	}catch(Exception e) {
-    		result = "exception";
-    	}
-    	json.put("result", result);
-    	return json;
+    public @ResponseBody JSONObject add(@RequestBody List<TicketVO> ticketList) throws JsonProcessingException{
+        return ticketService.insertList(ticketList);
     }
     
     
@@ -53,36 +43,11 @@ public class TicketApiController {
     public @ResponseBody JSONObject getList(@RequestBody Map<String,Object> map) throws JsonProcessingException{
       JSONObject json = new JSONObject();
       try{
-        json.put("list", member.selectList(map));
+        json.put("list", ticketService.selectList(map));
         json.put("status", "OK");
       }catch(Exception e) {
         e.printStackTrace();
       }
       return json;
-    }
-    /**
-     * 삭제
-     * @param map
-     * @return
-     * @throws JsonProcessingException
-     */
-    @Delete(value = "/info")
-    public @ResponseBody JSONObject deleteInfo(@RequestBody Map<String,Object> map) throws JsonProcessingException{
-      JSONObject json = new JSONObject();
-      try{
-        member.delete(map);
-        json.put("status", "OK");
-      }catch(Exception e) {
-        e.printStackTrace();
-      }
-      return json;
-    }
- 
-    
-//    @GetMapping(value="/set")
-    public @ResponseBody String set() {
-    	Map<String,Object> map = new HashMap<String,Object>();
-//    	lottoNoService.insert(map);
-    	return map.toString();
     }
 }

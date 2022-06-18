@@ -8,6 +8,25 @@
  	<select id="selectList" parameterType="map" resultType="map">
 		SELECT 	*
 		FROM 		<include refid="tblnm" />
+		<if test="no!=null">
+		AND		NO = #{no}	
+		</if>
+		<if test="tr!=null">
+		AND		TR = #{tr}	
+		</if>
+	</select>
+	
+ 	<!-- 건수 조회 -->
+ 	<select id="selectCnt" parameterType="map" resultType="int">
+		SELECT 	count(1)
+		FROM 	<include refid="tblnm" />
+		WHERE	1=1
+		<if test="no!=null">
+		AND		NO = #{no}	
+		</if>
+		<if test="tr!=null">
+		AND		TR = #{tr}	
+		</if>
 	</select>
 	
  	<!-- 단건 조회 -->
@@ -15,6 +34,12 @@
 		SELECT 	*
 		FROM 		<include refid="tblnm" />
 		WHERE	NO = #{no}	
+	</select>
+	
+	<select id="checkTr"  parameterType="String" resultType="boolean">
+		SELECT 
+		EXISTS( SELECT 1 FROM <include refid="tblnm"/>
+		WHERE TR = #{tr} ) a
 	</select>
 	
 	<!-- 입력 -->
@@ -27,5 +52,33 @@
 		(
 			#{ballNo1}
 		)
+	</insert>
+	<!-- 목록 입력 -->
+	<insert id="insertList" parameterType="List">
+		INSERT INTO <include refid="tblnm"/>
+		(
+			member_no,
+			drw_no,
+			method,
+			tr,
+			no1,no2,no3,no4,no5,no6,
+			regist_date
+		)
+		values
+		<foreach collection="list" item="ticketVO" separator="," >
+		(
+			(select no from member_tb where id = #{ticketVO.memberId} ),
+			#{ticketVO.drwNo},
+			#{ticketVO.method},
+			#{ticketVO.tr},
+			#{ticketVO.no1},
+			#{ticketVO.no2},
+			#{ticketVO.no3},
+			#{ticketVO.no4},
+			#{ticketVO.no5},
+			#{ticketVO.no6},
+			now()
+		)
+		</foreach>
 	</insert>
 </mapper>
