@@ -17,12 +17,12 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'war'
 war {
-    baseName = 'kr.co.lotto_api'
+    baseName = 'kr.co.colander'
 }
 
 
 // group = 'com.example'
-group = 'kr.co.lotto_api'
+group = 'kr.co.colander'
 version = '1.0.0'
 sourceCompatibility = 1.8
 
