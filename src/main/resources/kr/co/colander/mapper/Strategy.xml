@@ -80,7 +80,7 @@
 		)
 		values
 		(
-			#{memberNo},
+			(select no from member_tb where id = #{memberNo}),
 			#{oddArr},
 			#{firstNo},
 			#{secondNo},
