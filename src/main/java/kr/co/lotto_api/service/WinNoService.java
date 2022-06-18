@@ -2,10 +2,14 @@ package kr.co.lotto_api.service;
 
 import java.util.List;
 import java.util.Map;
+
 import javax.annotation.Resource;
+
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+
 import kr.co.lotto_api.mapper.Stats;
 import kr.co.lotto_api.mapper.WeekBatch;
 import kr.co.lotto_api.mapper.WinNo;
@@ -29,22 +33,25 @@ public class WinNoService extends AbstractService implements ServiceImpl{
 	private WeekBatch weekBatch;
 	
 	@Override
-	public void insert(Map<String, Object> map) {
+	public JSONObject insert(Map<String, Object> map) {
 		winNo.insert(map);
 		weekBatch.updateLottoNo();
 //		weekBatch.updateBallNo();
 		weekBatch.updateBallNoRate();
 		weekBatch.updateOddNo();
 		weekBatch.updateSumNo();
+		return _jsonOk;
 	}
 	
 	@Override
-	public void update(Map<String, Object> map) {
+	public JSONObject update(Map<String, Object> map) {
 		winNo.update(map);
+		return _jsonOk;
 	}
 	@Override
-	public void delete(Map<String, Object> map) {
+	public JSONObject delete(Map<String, Object> map) {
 		winNo.delete(map);
+		return _jsonOk;
 	}
 	
 	public WinNoVO selectOne(Map<String,Object> map) {

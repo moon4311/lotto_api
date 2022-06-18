@@ -1,15 +1,14 @@
 package kr.co.lotto_api.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import kr.co.lotto_api.mapper.LottoNo;
-import kr.co.lotto_api.mapper.Strategy;
 import kr.co.lotto_api.model.LottoNoVO;
 
 @Service
@@ -20,7 +19,7 @@ public class LottoNoService extends AbstractService implements ServiceImpl {
 	private LottoNo lottoNo;
 	
 	@Override
-	public void insert(Map<String, Object> map) {
+	public JSONObject insert(Map<String, Object> map) {
 		for(int a=1; a<41;a++) {
 			for(int b=a+1;b<42;b++) {
 				for(int c=b+1;c<43;c++) {
@@ -42,14 +41,17 @@ public class LottoNoService extends AbstractService implements ServiceImpl {
 				}
 			}
 		}
+		return _jsonOk;
 	}
 
 	@Override
-	public void update(Map<String, Object> map) {
+	public JSONObject update(Map<String, Object> map) {
+		return _jsonOk;
 	}
 
 	@Override
-	public void delete(Map<String, Object> map) {
+	public JSONObject delete(Map<String, Object> map) {
+		return _jsonOk;
 	}
 
 	public List<LottoNoVO> selectList(Map<String, Object> map) {

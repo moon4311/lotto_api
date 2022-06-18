@@ -8,7 +8,7 @@ spring:
       max-request-size: 50MB
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://118.32.151.143:3700/lotto?characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://49.247.149.25:3306/lotto?characterEncoding=UTF-8&serverTimezone=UTC
     username: lotto
     password: ckffl2022
 mybatis:
@@ -16,7 +16,7 @@ mybatis:
   config-location: classpath:mybatis-config.xml
   
 server:
-  port: 3701
+  port: 8080
   servlet:
     context-path: /
   error:
