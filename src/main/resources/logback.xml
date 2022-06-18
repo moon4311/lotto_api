@@ -39,7 +39,7 @@
 		</encoder>
 	</appender>
 
-	<logger name="kr.co.lotto_api">
+	<logger name="kr.co.colander">
 		<level value="DEBUG"/>
 	</logger>
 

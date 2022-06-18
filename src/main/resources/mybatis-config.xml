@@ -30,6 +30,6 @@
 	</settings>
     <typeAliases>
         <typeAlias alias="map" type="java.util.Map" /> 
-    	<package name="kr.co.lotto_api.model"/>
+    	<package name="kr.co.colander.model"/>
     </typeAliases>
 </configuration>

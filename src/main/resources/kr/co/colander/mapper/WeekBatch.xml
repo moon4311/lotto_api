@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.colander.mapper.WeekBatch">
+
+	<!-- 814의  출현 횟수 -->
+	<update id="updateLottoNo">
+		UPDATE 	lotto_no_tb
+		SET			past_yn = 'Y'
+		WHERE		ball_no1 = #{ballNo1}
+		AND			ball_no2 = #{ballNo2}
+		AND			ball_no3 = #{ballNo3}
+		AND			ball_no4 = #{ballNo4}
+		AND			ball_no5 = #{ballNo5}
+		AND			ball_no6 = #{ballNo6}
+	</update>
+
+	
+	<!-- 합계 비율 --> 
+	<update id="updateSumNo">
+		UPDATE sum_no_tb a,
+					(
+						SELECT a.sum sum_no,
+									count(1) cnt,
+									count(1)/b.cnt*100 rate
+						FROM win_no_tb a
+								, (SELECT count(1) cnt FROM win_no_tb) b
+						GROUP BY a.sum
+					) b
+		SET 		a.win_cnt = b.cnt,
+					a.win_rate = b.rate
+        WHERE	a.sum_no = b.sum_no
+	</update>
+	<!-- 홀/짝 수 -->
+	<update id="updateOddNo">
+		UPDATE		ODD_RATE_TB a, 
+						(select odd_cnt, max(drw_no) drw_no, count(1) cnt from win_no_tb group by odd_cnt) b,
+				        (select count(1) cnt from win_no_tb) c
+		SET			a.win_cnt = b.cnt,
+						a.win_rate = b.cnt/c.cnt*100,
+						a.last_drw_no = b.drw_no
+		WHERE a.odd_cnt = b.odd_cnt
+	</update>
+	
+	<!-- 각 위치별 갯수 v1 -->
+	<update id="updateBallNo">
+		UPDATE ball_no_tb A
+			,(SELECT ball_NO1 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO1 ) B1
+			,(SELECT ball_NO2 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO2 ) B2
+			,(SELECT ball_NO3 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO3 ) B3
+			,(SELECT ball_NO4 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO4 ) B4
+			,(SELECT ball_NO5 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO5 ) B5
+			,(SELECT ball_NO6 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO6 ) B6
+		SET 
+			seq1_cnt = B1.CNT,
+			seq2_cnt= B2.CNT,
+			seq3_cnt= B3.CNT,
+			seq4_cnt= B4.CNT,
+			seq5_cnt= B5.CNT,
+			seq6_cnt= B6.CNT
+		WHERE 
+					A.BALL_NO = B1.NO
+			AND	A.BALL_NO = B2.NO
+			AND	A.BALL_NO = B3.NO
+			AND	A.BALL_NO = B4.NO
+			AND	A.BALL_NO = B5.NO
+			AND	A.BALL_NO = B6.NO
+	</update>
+	
+	<!-- 각 위치별 갯수  v2-->
+		<update id="updateBallNoRate">
+		UPDATE		BALL_NO_RATE_TB A
+						LEFT JOIN (SELECT ball_NO1 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO1 ) B1
+					    ON A.ball_no = B1.NO
+						LEFT JOIN (SELECT ball_NO2 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO2 ) B2
+					    ON A.ball_no = B2.NO
+						LEFT JOIN (SELECT ball_NO3 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO3 ) B3
+						ON A.ball_no = B3.NO
+						LEFT JOIN (SELECT ball_NO4 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO4 ) B4
+						ON A.ball_no = B4.NO
+						LEFT JOIN (SELECT ball_NO5 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO5 ) B5
+						ON A.ball_no = B5.NO
+						LEFT JOIN (SELECT ball_NO6 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO6 ) B6
+						ON A.ball_no = B6.NO,
+				    	(select count(1) drwNo from win_no_tb ) C
+		SET			A.no1_rslt_cnt = nvl(B1.cnt,0),
+						A.no1_rslt_rate = A.no1_rslt_cnt / C.drwNo * 100,
+						A.no2_rslt_cnt = nvl(B2.cnt,0),
+						A.no2_rslt_rate = A.no2_rslt_cnt / C.drwNo * 100,
+						A.no3_rslt_cnt = nvl(B3.cnt,0),
+						A.no3_rslt_rate = A.no3_rslt_cnt / C.drwNo * 100,
+						A.no4_rslt_cnt = nvl(B4.cnt,0),
+						A.no4_rslt_rate = A.no4_rslt_cnt / C.drwNo * 100,
+						A.no5_rslt_cnt = nvl(B5.cnt,0),
+						A.no5_rslt_rate = A.no5_rslt_cnt / C.drwNo * 100,
+						A.no6_rslt_cnt = nvl(B6.cnt,0),
+						A.no6_rslt_rate = A.no6_rslt_cnt / C.drwNo * 100
+	</update>
+	
+</mapper>
