@@ -8,12 +8,17 @@
  	<select id="selectList" parameterType="map" resultType="map">
 		SELECT 	*
 		FROM 		<include refid="tblnm" />
+		WHERE 	1=1
 		<if test="no!=null">
 		AND		NO = #{no}	
+		</if>
+		<if test="memberNo!=null">
+		AND		MEMBER_NO = #{memberNo}	
 		</if>
 		<if test="tr!=null">
 		AND		TR = #{tr}	
 		</if>
+		ORDER BY NO desc
 	</select>
 	
  	<!-- 건수 조회 -->
@@ -22,7 +27,10 @@
 		FROM 	<include refid="tblnm" />
 		WHERE	1=1
 		<if test="no!=null">
-		AND		NO = #{no}	
+		AND		MEMBER_NO = #{no}	
+		</if>
+		<if test="memberNo!=null">
+		AND		MEMBER_NO = #{memberNo}	
 		</if>
 		<if test="tr!=null">
 		AND		TR = #{tr}	
