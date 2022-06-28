@@ -4,19 +4,19 @@
  
  	<sql id="selectWhere">
  		AND ball_no1 <![CDATA[ <= ]]> #{firstNo}
+		AND ball_no1 in ( <foreach collection="noList1" item="no" separator=",">#{no}</foreach>)
 		AND ball_no2 <![CDATA[ <= ]]> #{secondNo}
+		AND ball_no2 in ( <foreach collection="noList2" item="no" separator=",">#{no}</foreach>)
+		AND ball_no3 in ( <foreach collection="noList3" item="no" separator=",">#{no}</foreach>)
+		AND ball_no4 in ( <foreach collection="noList4" item="no" separator=",">#{no}</foreach>)
 		AND ball_no5 <![CDATA[ >= ]]> #{fiveNo}
+		AND ball_no5 in ( <foreach collection="noList5" item="no" separator=",">#{no}</foreach>)
 		AND ball_no6 <![CDATA[ >= ]]> #{lastNo}
+		AND ball_no6 in ( <foreach collection="noList6" item="no" separator=",">#{no}</foreach>)
 		AND sum between #{sumMin} AND #{sumMax}
 		<if test="oddList!=null">
 		AND odd_cnt in ( <foreach collection="oddList" item="no" separator=",">#{no}</foreach>)
 		</if>
-		AND ball_no1 in ( <foreach collection="noList" item="no" separator=",">#{no}</foreach>)
-		AND ball_no2 in ( <foreach collection="noList" item="no" separator=",">#{no}</foreach>)
-		AND ball_no3 in ( <foreach collection="noList" item="no" separator=",">#{no}</foreach>)
-		AND ball_no4 in ( <foreach collection="noList" item="no" separator=",">#{no}</foreach>)
-		AND ball_no5 in ( <foreach collection="noList" item="no" separator=",">#{no}</foreach>)
-		AND ball_no6 in ( <foreach collection="noList" item="no" separator=",">#{no}</foreach>)
  	</sql>
  
  	<!--  추출 건수 조회 -->

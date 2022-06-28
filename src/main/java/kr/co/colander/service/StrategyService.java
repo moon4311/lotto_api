@@ -60,14 +60,38 @@ public class StrategyService extends AbstractService implements ServiceImpl {
     		map.put("rows", 10);
     	}
     	
+    	int no1 = Integer.parseInt((String)map.get("firstNo"));
+    	int no2 = Integer.parseInt((String)map.get("secondNo"));
+    	int no5 = Integer.parseInt((String)map.get("fiveNo"));
+    	int no6 = Integer.parseInt((String)map.get("lastNo"));
+    	
     	String noListStr = (String)map.get("noArr");
     	String[] arr = noListStr.split(",");
+    	
     	if(arr.length> 1) {
-	    	List<String> noList = new ArrayList<String>();
+    		//no1
+	    	List<String> noList1 = new ArrayList<String>();
+	    	List<String> noList2 = new ArrayList<String>();
+	    	List<String> noList3 = new ArrayList<String>();
+	    	List<String> noList4 = new ArrayList<String>();
+	    	List<String> noList5 = new ArrayList<String>();
+	    	List<String> noList6 = new ArrayList<String>();
+	    	int no = 0;
 	    	for(String one : arr) {
-	    		noList.add(one);
+	    		no = Integer.parseInt(one);
+	    		if(no <= no1) { noList1.add(one); }
+	    		if(no>1 && no<=no2){ noList2.add(one); }
+	    		if(no>2 && no<43 ) { noList3.add(one); }
+	    		if(no>3 && no<44 ) { noList4.add(one); }
+	    		if(no >= no5 && no < 45){ noList5.add(one); }
+	    		if(no >= no6) { noList6.add(one); }
 	    	}
-	    	map.put("noList",noList);
+	    	map.put("noList1",noList1);
+	    	map.put("noList2",noList2);
+	    	map.put("noList3",noList3);
+	    	map.put("noList4",noList4);
+	    	map.put("noList5",noList5);
+	    	map.put("noList6",noList6);
     	}
     	
     	String oddStr = (String)map.get("oddArr");
