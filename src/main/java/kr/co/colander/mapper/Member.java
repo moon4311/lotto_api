@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import kr.co.colander.model.MemberVO;
+import kr.co.colander.model.MyInfoVO;
 /**
  * 
  * 
@@ -21,4 +22,9 @@ public interface Member {
   public void login(Map<String,Object> map);
   
   public void delete(Map<String,Object> map);
+  
+  
+ 
+  public MyInfoVO selectMyInfo(Map<String,Object> map);
+  
 }

@@ -18,7 +18,7 @@
 		<if test="tr!=null">
 		AND		TR = #{tr}	
 		</if>
-		ORDER BY NO desc
+		ORDER BY DRW_NO desc
 	</select>
 	
  	<!-- 건수 조회 -->

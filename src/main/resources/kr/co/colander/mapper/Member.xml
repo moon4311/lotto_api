@@ -11,8 +11,17 @@
 		LIMIT 10
 	</select>
 	
+	<select id="selectMyInfo" parameterType="map" resultType="MyInfoVO">
+		SELECT display_name,
+					count(1) ticketCnt		
+		FROM	<include refid="tblnm"/> a
+		LEFT JOIN	TICKETS_HISTORY_TB b
+		ON		a.no = b.member_no
+		WHERE a.no = #{no}
+	</select>
+	
 	<!-- 입력 -->
-	<insert id="insert" parameterType="map">
+	<insert id="insert" parameterType="map" useGeneratedKeys="true" keyColumn="no" keyProperty="no"  >
 		INSERT INTO <include refid="tblnm"/>
 		(
 			id,
@@ -34,10 +43,13 @@
 	</insert>
 	
 	<!-- 로그인 -->
-	<update id="login" parameterType="map">
+	<update id="login" parameterType="map" useGeneratedKeys="true" keyColumn="no" keyProperty="no">
 		UPDATE 	<include refid="tblnm"/>
 		SET			last_login_dt = now()
 		WHERE		id = #{id}
+		<selectKey keyColumn="no" keyProperty="no" order="AFTER" resultType="String">
+			SELECT NO FROM <include refid="tblnm"/> WHERE id= #{id}
+		</selectKey>
 	</update>
 	
 	<!-- 삭제 -->

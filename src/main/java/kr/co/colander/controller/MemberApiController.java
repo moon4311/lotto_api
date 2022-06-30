@@ -2,6 +2,9 @@ package kr.co.colander.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.annotation.Resource;
+
 import org.apache.ibatis.annotations.Delete;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import kr.co.colander.mapper.Member;
+import kr.co.colander.service.MemberService;
  
 
 @RestController
@@ -23,23 +28,15 @@ import kr.co.colander.mapper.Member;
 public class MemberApiController {
 
 	@Autowired
+	MemberService memberService;
+	
+	@Resource
 	Member member;
 	
 	
     @PostMapping(value = "/login")
-    public @ResponseBody JSONObject login(@RequestBody Map<String,Object> map) throws JsonProcessingException{
-    	JSONObject json = new JSONObject();
-    	//회원 입력시도, 이미존재하면 로그인 처리
-    	String result = "insert"; 
-    	try{
-    		member.insert(map);
-    		json.put("status", "OK");
-    	}catch(Exception e) {
-    	  result = "login";
-    		member.login(map);
-    	}
-    	json.put("result", result);
-    	return json;
+    public @ResponseBody JSONObject login(@RequestBody Map<String,Object> map){
+    	return memberService.login(map);
     }
     
     

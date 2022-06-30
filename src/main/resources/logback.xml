@@ -41,10 +41,12 @@
 
 	<logger name="kr.co.colander">
 		<level value="DEBUG"/>
+		<!-- <appender-ref ref="CONSOLE"/> -->
+		<appender-ref ref="FILE"/>
 	</logger>
 
 	<logger name="org.apache.mybatis">
-		<level value="WARN"/>
+		<level value="INFO"/>
 		<appender-ref ref="CONSOLE"/>
 		<appender-ref ref="FILE"/>
 	</logger>
