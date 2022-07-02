@@ -3,7 +3,7 @@
 <mapper namespace="kr.co.colander.mapper.WeekBatch">
 
 	<!-- 814의  출현 횟수 -->
-	<update id="updateLottoNo">
+	<update id="updateLottoNo" parameterType="map">
 		UPDATE 	lotto_no_tb
 		SET			past_yn = 'Y'
 		WHERE		ball_no1 = #{ballNo1}
@@ -67,7 +67,7 @@
 	</update>
 	
 	<!-- 각 위치별 갯수  v2-->
-		<update id="updateBallNoRate">
+	<update id="updateBallNoRate">
 		UPDATE		BALL_NO_RATE_TB A
 						LEFT JOIN (SELECT ball_NO1 NO,COUNT(1) CNT FROM win_no_tb GROUP BY ball_NO1 ) B1
 					    ON A.ball_no = B1.NO
@@ -95,5 +95,17 @@
 						A.no6_rslt_cnt = nvl(B6.cnt,0),
 						A.no6_rslt_rate = A.no6_rslt_cnt / C.drwNo * 100
 	</update>
+	
+	<delete id="deleteWinNo" parameterType="map">
+		DELETE
+		FROM	 	lotto_no_reduce_tb
+		WHERE		ball_no1 = #{ballNo1}
+		AND			ball_no2 = #{ballNo2}
+		AND			ball_no3 = #{ballNo3}
+		AND			ball_no4 = #{ballNo4}
+		AND			ball_no5 = #{ballNo5}
+		AND			ball_no6 = #{ballNo6}
+	</delete>
+	
 	
 </mapper>

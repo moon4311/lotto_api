@@ -35,7 +35,8 @@ public class WinNoService extends AbstractService implements ServiceImpl{
 	@Override
 	public JSONObject insert(Map<String, Object> map) {
 		winNo.insert(map);
-		weekBatch.updateLottoNo();
+		weekBatch.updateLottoNo(map);
+		weekBatch.deleteWinNo(map);
 //		weekBatch.updateBallNo();
 		weekBatch.updateBallNoRate();
 		weekBatch.updateOddNo();
