@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.colander.mapper.BoardTip">
+ 
+ 	<sql id="tblnm">BOARD_TIP_TB</sql>
+ 	
+ 	<!-- 다건 조회 -->
+ 	<select id="selectList" parameterType="map" resultType="map">
+		SELECT 	*
+		FROM 		<include refid="tblnm" />
+		WHERE 	1=1
+		<if test="no!=null">
+		AND		NO = #{no}	
+		</if>
+		ORDER BY NO desc
+		LIMIT 10
+	</select>
+	
+ 	<!-- 건수 조회 -->
+ 	<select id="selectCnt" parameterType="map" resultType="int">
+		SELECT 	count(1)
+		FROM 	<include refid="tblnm" />
+		WHERE	1=1
+		<if test="no!=null">
+		AND		NO = #{no}	
+		</if>
+	</select>
+	
+ 	<!-- 단건 조회 -->
+ 	<select id="selectOne" parameterType="map" resultType="map">
+		SELECT 	*
+		FROM 		<include refid="tblnm" />
+		WHERE	NO = #{no}	
+	</select>
+	
+	<!-- 입력 -->
+	<insert id="insert" parameterType="map">
+		INSERT INTO <include refid="tblnm"/>
+		(
+			TITLE,
+			CONTENTS
+		)
+		values
+		(
+			#{title},
+			#{contents}
+		)
+	</insert>
+</mapper>

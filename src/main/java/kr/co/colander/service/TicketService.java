@@ -64,8 +64,13 @@ public class TicketService extends AbstractService implements ServiceImpl {
 		return _jsonOk;
 	}
 
+	
 	@Override
+	/**
+	 * memberNo, tr 기준 삭제
+	 */
 	public JSONObject delete(Map<String, Object> map) {
+		ticketHistory.delete(map);
 		return _jsonOk;
 	}
 

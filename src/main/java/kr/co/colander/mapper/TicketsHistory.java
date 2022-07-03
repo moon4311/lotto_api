@@ -22,4 +22,6 @@ public interface TicketsHistory {
   public int insertList(List<TicketVO> list);
   public boolean checkTr(String tr);
   
+  public int delete(Map<String,Object> map);
+  
 }

@@ -1,7 +1,6 @@
 package kr.co.colander.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.json.simple.JSONObject;
@@ -14,41 +13,36 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import kr.co.colander.model.TicketVO;
-import kr.co.colander.service.TicketService;
+import kr.co.colander.service.BoardService;
  
 
 @RestController
-@RequestMapping("/api/ticket")
+@RequestMapping("/api/board/tip")
 @CrossOrigin
-public class TicketApiController {
+public class BoardTipApiController {
 
 	@Autowired
-	TicketService ticketService;
+	BoardService boardService;
 	
 	
     @PostMapping(value = "/add")
-    public @ResponseBody JSONObject add(@RequestBody List<TicketVO> ticketList) throws JsonProcessingException{
-        return ticketService.insertList(ticketList);
+    public JSONObject add(@RequestBody Map<String,Object> boardVO) throws JsonProcessingException{
+        return boardService.insert(boardVO);
     }
     
     
     /**
      * 목록
-     * @param map
-     * @return
-     * @throws JsonProcessingException
      */
     @GetMapping(value = "/list")
-    public @ResponseBody JSONObject getList(@RequestParam Map<String,Object> map) throws JsonProcessingException{
+    public JSONObject getList(@RequestParam Map<String,Object> map) throws JsonProcessingException{
       JSONObject json = new JSONObject();
       try{
-        json.put("list", ticketService.selectList(map));
+        json.put("list", boardService.selectList(map));
         json.put("status", "OK");
       }catch(Exception e) {
         e.printStackTrace();
@@ -56,18 +50,24 @@ public class TicketApiController {
       return json;
     }
     
-    @DeleteMapping(value="/info/{memberNo}/{tr}")
-    public @ResponseBody JSONObject delete(@PathVariable int memberNo, @PathVariable String tr) throws JsonProcessingException{
+    @GetMapping(value="/info/{no}")
+    public JSONObject selectOne(@PathVariable int no) throws JsonProcessingException{
     	JSONObject json = new JSONObject();
     	try{
     		Map<String,Object> map = new HashMap<String,Object>();
-    		map.put("memberNo", memberNo);
-    		map.put("tr", tr);
-    		return ticketService.delete(map);
+    		map.put("no", no);
+    		json.put("one", boardService.selectOne(map));
     	}catch(Exception e) {
     		e.printStackTrace();
     	}
     	return json;
+    }
+    
+    @DeleteMapping(value="/info/{no}")
+    public JSONObject delete(@PathVariable int no) throws JsonProcessingException{
+    	Map<String,Object> map = new HashMap<String,Object>();
+		map.put("no", no);
+		return boardService.delete(map);
     }
     
     
