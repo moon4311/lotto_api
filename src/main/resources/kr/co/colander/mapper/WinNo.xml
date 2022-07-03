@@ -116,6 +116,7 @@
 		FROM 		SUM_NO_TB
 	</select>
 	
+	<!--  이전회차의 공 출현 여부 -->
 	<select id="selectPreviousAppearance" resultType="BallNoRateVO">
 		SELECT sum(no1) no1RsltCnt , sum(no1)/count(1)*100 no1RsltRate,
 	   sum(no2) no2RsltCnt , sum(no2)/count(1)*100 no2RsltRate
