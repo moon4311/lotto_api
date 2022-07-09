@@ -89,4 +89,13 @@ public class WinNoService extends AbstractService implements ServiceImpl{
 		return stats.selectBallNoRateList(map);
 	}
 	
+	/**
+	 *  지난회차 포함 확율
+	 */
+	public Map<String,Object> selectContainRate(Map<String,Object> map){
+		return stats.selectContainRate(map);
+	}
+	
+	
+	
 }

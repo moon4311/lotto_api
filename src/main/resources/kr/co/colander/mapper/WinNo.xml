@@ -158,7 +158,8 @@
 			ball_no6,
 			ball_no7,
 			sum,
-			odd_cnt
+			odd_cnt,
+			no_json
 		)
 		values
 		(
@@ -172,7 +173,8 @@
 			#{ballNo6},
 			#{ballNo7},
 			#{sum},
-			#{oddCnt}
+			#{oddCnt},
+			JSON_ARRAY(#{ball_no1},#{ball_no2},#{ball_no3},#{ball_no4},#{ball_no5},#{ball_no6})
 		)
 	</insert>
 	

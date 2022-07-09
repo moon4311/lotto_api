@@ -17,12 +17,23 @@
 		<if test="oddList!=null">
 		AND odd_cnt in ( <foreach collection="oddList" item="no" separator=",">#{no}</foreach>)
 		</if>
+		<if test='containExNo != null  and containExNo.equals("true")'>
+		AND 
+            	( JSON_CONTAINS(no_json,ball_no1) 
+            		or JSON_CONTAINS(no_json,ball_no2)
+	             	or JSON_CONTAINS(no_json,ball_no3) 
+	             	or JSON_CONTAINS(no_json,ball_no4) 
+	              	or JSON_CONTAINS(no_json,ball_no5) 
+	              	or JSON_CONTAINS(no_json,ball_no6)
+	            )
+		</if>
  	</sql>
  
  	<!--  추출 건수 조회 -->
  	<select id="selectCnt" parameterType="map" resultType="int">
 		SELECT 	count(1)
-		FROM 		LOTTO_NO_REDUCE_TB
+		FROM 		LOTTO_NO_REDUCE_TB a,
+		(select no_json from win_no_tb order by drw_no desc limit 1) b
 		WHERE 1=1
 		<include refid="selectWhere"/>
 	</select>
@@ -36,22 +47,11 @@
 						BALL_NO4,
 						BALL_NO5,
 						BALL_NO6,
+						SUM,
+						ODD_CNT
 						
-						BALL_NO1+
-						BALL_NO2+
-						BALL_NO3+
-						BALL_NO4+
-						BALL_NO5+
-						BALL_NO6 SUM,
-						
-						BALL_NO1%2+
-						BALL_NO2%2+
-						BALL_NO3%2+
-						BALL_NO4%2+
-						BALL_NO5%2+
-						BALL_NO6%2 ODD_CNT
-						
-		FROM 		LOTTO_NO_REDUCE_TB
+		FROM 		LOTTO_NO_REDUCE_TB a,
+		(select no_json from win_no_tb order by drw_no desc limit 1) b
 		WHERE 1=1
 		<include refid="selectWhere"/>
 		ORDER BY 1

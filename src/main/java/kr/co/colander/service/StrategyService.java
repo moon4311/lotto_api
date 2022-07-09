@@ -51,13 +51,15 @@ public class StrategyService extends AbstractService implements ServiceImpl {
 	 */
 	public Map<String,Object> selectReduceList(Map<String, Object> map) {
 		//검색조건 입력
-		insert(map);
+//		insert(map);
 
     	try {
-    		int limit = (int) map.get("rows");
-    		limit = limit * 1;
+    		String limit = (String) map.get("rows");
+    		if(limit == null) {
+    			map.put("rows", 10);
+    		}
     	}catch(Exception e) {
-    		map.put("rows", 10);
+    		e.printStackTrace();
     	}
     	
     	int no1 = Integer.parseInt((String)map.get("firstNo"));

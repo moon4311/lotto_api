@@ -33,6 +33,12 @@ public interface Stats {
 
   public List<BallNoRateVO> selectBallNoRateList(Map<String,Object> map);
   
+  /**
+   * 지난회차 포함 확율
+   * @param map
+   * @return
+   */
+  public Map<String,Object> selectContainRate(Map<String,Object> map);
   
   /** 홀짝 비율
    * @return

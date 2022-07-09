@@ -65,6 +65,32 @@
 		FROM 		BALL_NO_RATE_TB
 	</select>
 	
+	<select id="selectContainRate" parameterType="map" resultType="map">
+		SELECT sum(no1) no1RsltCnt , sum(no1)/count(1)*100 no1RsltRate,
+	   				sum(no2) no2RsltCnt , sum(no2)/count(1)*100 no2RsltRate
+		FROM (
+			SELECT 
+			   /* 보너스 번호 미포함 */
+				a.ball_no1 in ( b.ball_no1, b.ball_no2, b.ball_no3,b.ball_no4,b.ball_no5,b.ball_no6) or
+				a.ball_no2 in ( b.ball_no1, b.ball_no2, b.ball_no3,b.ball_no4,b.ball_no5,b.ball_no6) or
+				a.ball_no3 in ( b.ball_no1, b.ball_no2, b.ball_no3,b.ball_no4,b.ball_no5,b.ball_no6) or
+				a.ball_no4 in ( b.ball_no1, b.ball_no2, b.ball_no3,b.ball_no4,b.ball_no5,b.ball_no6) or
+				a.ball_no5 in ( b.ball_no1, b.ball_no2, b.ball_no3,b.ball_no4,b.ball_no5,b.ball_no6) or
+				a.ball_no6 in ( b.ball_no1, b.ball_no2, b.ball_no3,b.ball_no4,b.ball_no5,b.ball_no6) no1,
+			   /* 보너스 번호 포함 */
+                a.ball_no1 in ( b.ball_no1, b.ball_no2, b.ball_no3,b.ball_no4,b.ball_no5,b.ball_no6) or
+				a.ball_no2 in ( b.ball_no1, b.ball_no2, b.ball_no3,b.ball_no4,b.ball_no5,b.ball_no6) or
+				a.ball_no3 in ( b.ball_no1, b.ball_no2, b.ball_no3,b.ball_no4,b.ball_no5,b.ball_no6) or
+				a.ball_no4 in ( b.ball_no1, b.ball_no2, b.ball_no3,b.ball_no4,b.ball_no5,b.ball_no6) or
+				a.ball_no5 in ( b.ball_no1, b.ball_no2, b.ball_no3,b.ball_no4,b.ball_no5,b.ball_no6) or
+				a.ball_no6 in ( b.ball_no1, b.ball_no2, b.ball_no3,b.ball_no4,b.ball_no5,b.ball_no6) or
+                a.ball_no7 in ( b.ball_no1, b.ball_no2, b.ball_no3,b.ball_no4,b.ball_no5,b.ball_no6) no2
+			FROM win_no_tb a
+			LEFT JOIN win_no_tb b
+			ON a.drw_no = b.drw_no-1
+		) c
+	</select>
+	
 		
  	<!-- 홀짝 비율 -->
 	<select id="selectOddEven" resultType="OddEvenVO">
