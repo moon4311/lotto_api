@@ -7,11 +7,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.colander.service.LottoNoService;
 import kr.co.colander.service.StrategyService;
@@ -28,13 +26,21 @@ public class StrategyApiController {
 	@Autowired
 	StrategyService strategyService;
    
-	ObjectMapper  om = new ObjectMapper();
+	/**
+	 * 기본제외 후 남은 갯수
+	 * @param map
+	 * @return
+	 * @throws JsonProcessingException
+	 */
+	@GetMapping(value = "/getStep1Cnt")
+	public int getStep1Cnt(@RequestParam Map<String,Object> map) throws JsonProcessingException {
+		return strategyService.selectStep1Cnt();
+	}
 	
     @GetMapping(value = "/getList")
-    public @ResponseBody String getList(@RequestParam Map<String,Object> map) throws JsonProcessingException {
+    public Map<String,Object> getList(@RequestParam Map<String,Object> map) throws JsonProcessingException {
     	
 
-    	Map<String,Object> rslt = strategyService.selectReduceList(map);
-        return om.writeValueAsString(rslt);
+    	return strategyService.selectReduceList(map);
     }
 }

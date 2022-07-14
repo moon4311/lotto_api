@@ -17,6 +17,12 @@ public interface Strategy {
 
 
 	/**
+	 * step1 제외 후 갯수
+	 * @return
+	 */
+	public int selectStep1Cnt();
+	
+	/**
 	 * 추출 건수
 	 * @param map
 	 * @return

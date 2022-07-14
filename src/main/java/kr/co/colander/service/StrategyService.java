@@ -45,6 +45,14 @@ public class StrategyService extends AbstractService implements ServiceImpl {
 	}
 	
 	/**
+	 * 기본제외 후 남은 갯수
+	 * @return
+	 */
+	public int selectStep1Cnt() {
+		return strategty.selectStep1Cnt();
+	}
+	
+	/**
 	 * 전략. 로또번호 추출
 	 * @param map
 	 * @return

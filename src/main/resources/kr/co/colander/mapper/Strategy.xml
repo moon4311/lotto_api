@@ -94,6 +94,12 @@
 		)
 	</insert>
 
+	<select id="selectStep1Cnt" resultType="int">
+		SELECT		v 
+		FROM 		lotto.calc_tb
+		WHERE 		k = 'step1Cnt'
+	</select>
+
 	<!-- 다건 조회 -->
  	<select id="selectHistoryList" parameterType="map" resultType="map">
 		SELECT 	*
