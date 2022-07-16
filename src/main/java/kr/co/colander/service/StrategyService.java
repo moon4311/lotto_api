@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-import kr.co.colander.mapper.LottoNo;
 import kr.co.colander.mapper.Strategy;
 import kr.co.colander.model.LottoNoVO;
 
@@ -18,9 +17,6 @@ import kr.co.colander.model.LottoNoVO;
 @Repository
 public class StrategyService extends AbstractService implements ServiceImpl {
 
-	@Autowired
-	private LottoNo lottoNo;
-	
 	@Autowired
 	private Strategy strategty;
 	
@@ -41,7 +37,7 @@ public class StrategyService extends AbstractService implements ServiceImpl {
 	}
 
 	public List<LottoNoVO> selectList(Map<String, Object> map) {
-		return lottoNo.selectList(map);
+		return strategty.selectList(map);
 	}
 	
 	/**

@@ -15,7 +15,8 @@ public interface WeekBatch {
 
 	// 814.. pastYn
 	public int updateLottoNo(Map<String,Object> map);
-	// 당첨번호 삭제
+
+	// lotto_no_reduce_tb 당첨번호 삭제
 	public int deleteWinNo( Map<String,Object> map );
 	
 	// 각 자리별 숫자 출현 수 v1
@@ -31,4 +32,6 @@ public interface WeekBatch {
 	// 홀짝 비율
 	public int updateOddNo();
 
+	// 당첨 결과
+	public int updateTicketResult(Map<String,Object> map);
 }

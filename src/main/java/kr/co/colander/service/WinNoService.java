@@ -41,6 +41,9 @@ public class WinNoService extends AbstractService implements ServiceImpl{
 		weekBatch.updateBallNoRate();
 		weekBatch.updateOddNo();
 		weekBatch.updateSumNo();
+		
+		//당첨결과 업데이트
+		weekBatch.updateTicketResult(map);
 		return _jsonOk;
 	}
 	

@@ -23,7 +23,7 @@ war {
 
 // group = 'com.example'
 group = 'kr.co.colander'
-version = '1.0.2'
+version = '1.0.0716'
 sourceCompatibility = 1.8
 
 repositories {

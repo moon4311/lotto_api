@@ -108,4 +108,18 @@
 	</delete>
 	
 	
+	<update id="updateTicketResult" parameterType="map">
+		UPDATE TICKETS_HISTORY_TB a,
+					 WIN_NO_TB b
+		SET RESULT 	= 	JSON_CONTAINS(b.no_json,no1)
+								+JSON_CONTAINS(b.no_json,no2)
+								+JSON_CONTAINS(b.no_json,no3)
+								+JSON_CONTAINS(b.no_json,no4)
+								+JSON_CONTAINS(b.no_json,no5)
+								+JSON_CONTAINS(b.no_json,no6)
+								+(JSON_CONTAINS(JSON_ARRAY(no1,no2,no3,no4,no5,no6),ball_no7)/2)
+		WHERE a.drw_no = b.drw_no
+		AND		a.drw_no = #{drwNo}
+	</update>
+	
 </mapper>

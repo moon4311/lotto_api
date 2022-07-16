@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.co.colander.service.MemberService;
@@ -25,7 +24,7 @@ public class MyApiController {
 	
 	
     @GetMapping(value = "/info")
-    public @ResponseBody JSONObject login(@RequestBody Map<String,Object> map) {
+    public JSONObject login(@RequestBody Map<String,Object> map) {
     	JSONObject json = new JSONObject();
     	//회원 입력시도, 이미존재하면 로그인 처리
     	String result = "insert"; 

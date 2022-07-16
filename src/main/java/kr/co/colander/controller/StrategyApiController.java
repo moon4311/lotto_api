@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import kr.co.colander.service.LottoNoService;
 import kr.co.colander.service.StrategyService;
  
 
@@ -19,9 +18,6 @@ import kr.co.colander.service.StrategyService;
 @RequestMapping("/api/strategy")
 @CrossOrigin
 public class StrategyApiController {
-
-	@Autowired
-	LottoNoService lottoNoService;
 
 	@Autowired
 	StrategyService strategyService;

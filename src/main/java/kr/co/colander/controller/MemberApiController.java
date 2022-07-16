@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -35,7 +34,7 @@ public class MemberApiController {
 	
 	
     @PostMapping(value = "/login")
-    public @ResponseBody JSONObject login(@RequestBody Map<String,Object> map){
+    public JSONObject login(@RequestBody Map<String,Object> map){
     	return memberService.login(map);
     }
     
@@ -47,7 +46,7 @@ public class MemberApiController {
      * @throws JsonProcessingException
      */
     @GetMapping(value = "/list")
-    public @ResponseBody JSONObject getList(@RequestBody Map<String,Object> map) throws JsonProcessingException{
+    public JSONObject getList(@RequestBody Map<String,Object> map) throws JsonProcessingException{
       JSONObject json = new JSONObject();
       try{
         json.put("list", member.selectList(map));
@@ -64,7 +63,7 @@ public class MemberApiController {
      * @throws JsonProcessingException
      */
     @Delete(value = "/info")
-    public @ResponseBody JSONObject deleteInfo(@RequestBody Map<String,Object> map) throws JsonProcessingException{
+    public JSONObject deleteInfo(@RequestBody Map<String,Object> map) throws JsonProcessingException{
       JSONObject json = new JSONObject();
       try{
         member.delete(map);
@@ -77,7 +76,7 @@ public class MemberApiController {
  
     
 //    @GetMapping(value="/set")
-    public @ResponseBody String set() {
+    public String set() {
     	Map<String,Object> map = new HashMap<String,Object>();
 //    	lottoNoService.insert(map);
     	return map.toString();

@@ -13,7 +13,7 @@ public class TicketVO {
 	
 	private String tr; // 일련번호
 	private String no1,no2,no3,no4,no5, no6;
-	private boolean result; //결과
+	private String result = "0"; //맞힌갯수 ( 보너스번호 0.5)
 	
 	private String url;
 }

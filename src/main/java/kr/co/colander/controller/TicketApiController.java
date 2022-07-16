@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -33,7 +32,7 @@ public class TicketApiController {
 	
 	
     @PostMapping(value = "/add")
-    public @ResponseBody JSONObject add(@RequestBody List<TicketVO> ticketList) throws JsonProcessingException{
+    public JSONObject add(@RequestBody List<TicketVO> ticketList) throws JsonProcessingException{
         return ticketService.insertList(ticketList);
     }
     
@@ -45,7 +44,7 @@ public class TicketApiController {
      * @throws JsonProcessingException
      */
     @GetMapping(value = "/list")
-    public @ResponseBody JSONObject getList(@RequestParam Map<String,Object> map) throws JsonProcessingException{
+    public JSONObject getList(@RequestParam Map<String,Object> map) throws JsonProcessingException{
       JSONObject json = new JSONObject();
       try{
         json.put("list", ticketService.selectList(map));
@@ -57,7 +56,7 @@ public class TicketApiController {
     }
     
     @DeleteMapping(value="/info/{memberNo}/{tr}")
-    public @ResponseBody JSONObject delete(@PathVariable int memberNo, @PathVariable String tr) throws JsonProcessingException{
+    public JSONObject delete(@PathVariable int memberNo, @PathVariable String tr) throws JsonProcessingException{
     	JSONObject json = new JSONObject();
     	try{
     		Map<String,Object> map = new HashMap<String,Object>();

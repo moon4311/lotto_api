@@ -1,7 +1,10 @@
 package kr.co.colander.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.annotation.Resource;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import kr.co.colander.mapper.TicketsHistory;
+import kr.co.colander.mapper.WeekBatch;
 import kr.co.colander.model.TicketVO;
 import lombok.extern.log4j.Log4j2;
 
@@ -20,6 +24,9 @@ public class TicketService extends AbstractService implements ServiceImpl {
 
 	@Autowired
 	private TicketsHistory ticketHistory;
+	
+	@Resource
+	private WeekBatch weekBatch;
 	
 	@Override
 	public JSONObject insert(Map<String, Object> map) {
@@ -50,7 +57,15 @@ public class TicketService extends AbstractService implements ServiceImpl {
 	  }
 	  
 	  try {
+		 //구매정보 입력
 	    ticketHistory.insertList(list);
+	    
+	    //당첨확인
+	    int drwNo = list.get(0).getDrwNo();
+	    Map<String,Object> map = new HashMap<String,Object>();
+	    map.put("drwNo", drwNo);
+	    weekBatch.updateTicketResult(map);
+	    
 	    return _jsonOk;
 	  }catch(Exception e) {
 	    e.printStackTrace();

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -20,7 +19,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.colander.mapper.Member;
 import kr.co.colander.model.WinNoVO;
-import kr.co.colander.service.LottoNoService;
 import kr.co.colander.service.WinNoService;
  
 
@@ -33,22 +31,19 @@ public class ApiController {
     WinNoService winNoService;
 	
 	@Autowired
-	LottoNoService lottoNoService;
-   
-	@Autowired
 	Member member;
 	
 	
 	ObjectMapper  om = new ObjectMapper();
 	
     @GetMapping(value = "/winNo")
-    public @ResponseBody String getWinNo(@RequestParam Map<String,Object> map) throws JsonProcessingException {
+    public String getWinNo(@RequestParam Map<String,Object> map) throws JsonProcessingException {
     	List<WinNoVO> list = winNoService.selectList(map);
         return om.writeValueAsString(list);
     }
     
     @PostMapping(value = "/winNo")
-    public @ResponseBody String set(@RequestBody Map<String,Object> map) throws JsonProcessingException {
+    public String set(@RequestBody Map<String,Object> map) throws JsonProcessingException {
     	JSONObject json = new JSONObject();
     	try {
     		winNoService.insert(map);
@@ -61,7 +56,7 @@ public class ApiController {
     
     @Deprecated
     @PostMapping(value = "/login")
-    public @ResponseBody JSONObject login(@RequestBody Map<String,Object> map) throws JsonProcessingException{
+    public JSONObject login(@RequestBody Map<String,Object> map) throws JsonProcessingException{
     	JSONObject json = new JSONObject();
     	//회원 입력시도, 이미존재하면 로그인 처리
     	String result = "insert"; 
@@ -79,7 +74,7 @@ public class ApiController {
  
     
 //    @GetMapping(value="/set")
-    public @ResponseBody String set() {
+    public String set() {
     	Map<String,Object> map = new HashMap<String,Object>();
 //    	lottoNoService.insert(map);
     	return map.toString();
