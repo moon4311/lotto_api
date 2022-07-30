@@ -30,7 +30,12 @@ public class TicketApiController {
 	@Autowired
 	TicketService ticketService;
 	
-	
+	/**
+	 * QR스캔으로 입력
+	 * @param ticketList
+	 * @return
+	 * @throws JsonProcessingException
+	 */
     @PostMapping(value = "/add")
     public JSONObject add(@RequestBody List<TicketVO> ticketList) throws JsonProcessingException{
         return ticketService.insertList(ticketList);

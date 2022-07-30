@@ -174,7 +174,7 @@
 			#{ballNo7},
 			#{sum},
 			#{oddCnt},
-			JSON_ARRAY(#{ball_no1},#{ball_no2},#{ball_no3},#{ball_no4},#{ball_no5},#{ball_no6})
+			JSON_ARRAY(#{ballNo1},#{ballNo2},#{ballNo3},#{ballNo4},#{ballNo5},#{ballNo6})
 		)
 	</insert>
 	
