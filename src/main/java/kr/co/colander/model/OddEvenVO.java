@@ -11,10 +11,10 @@ public class OddEvenVO {
 	private int oddCnt;
 	
 	// 814 기준, 당첨번호 기준
-	private String totalCnt, winCnt;
+	private long totalCnt, winCnt;
 	
 	// 비율
-	private String totalRate, winRate;
+	private double totalRate, winRate;
 	
 	// 마지막 회차
 	private String lastDrwNo;
